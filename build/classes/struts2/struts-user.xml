@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="user" extends="common" namespace="/user">
+	   <action name="user_*" class="userAction" method="{1}">
+	       <result name="show">/jsp/user/userList.jsp</result>
+	       <result name="detail">/jsp/user/userDetail.jsp</result>
+		   <result name="update" type="json"></result>
+		   <result name="add" type="json"></result>
+		   <result name="del" type="json"></result>
+	   </action>
+	</package>
+</struts>

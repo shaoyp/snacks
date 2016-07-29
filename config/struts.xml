@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.multipart.maxSize" value="20485760"/>  
+	<!-- 指定默认编码 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 便于排错,打印出更详细的错误信息 -->
+	<constant name="struts.devMode" value="false" />
+	<!-- 设置浏览器是否缓存静态内容,默认为TRUE,开发阶段最好关闭 -->
+	<constant name="struts.server.static.browserCache" value="false" />
+	<package name="common" extends="json-default" namespace="/"> 
+	   <interceptors> 
+            <interceptor-stack name="sessionStack"> 
+               <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack> 
+        </interceptors>
+        <default-interceptor-ref name="sessionStack"></default-interceptor-ref> 
+        <default-action-ref name="notFound" />
+        <global-results> 
+           <result name="interceptorJson" type="json" ></result>
+           <result name="login" >/login.jsp</result>
+           <result name="error" >/error.jsp</result>
+        </global-results> 
+        <global-exception-mappings>      
+            <exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>      
+        </global-exception-mappings>
+        <action name="notFound">
+	       <result>/error.jsp</result>
+	   	</action>
+	</package>
+	<include file="struts2/struts-*.xml"></include>
+
+	
+</struts>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="login" extends="common" namespace="/">
+	   <action name="login_*" class="loginAction" method="{1}">
+	       <interceptor-ref name="defaultStack"></interceptor-ref>
+	       <result name="success">/adminIndex.jsp</result>
+	       <result name="login">/login.jsp</result>
+	   </action>
+	   <action name="xhedtior_*" class="xhAction" method="{1}">
+	       <result name="uploadImg" type="json"></result>
+	   </action>
+	    <action name="yx_*" class="youxunAction" method="{1}">
+	       <result name="index" >/index.jsp</result>
+	       <result name="newsList" >/newsList.jsp</result>
+	       <result name="newsDetail" >/news-info.jsp</result>       
+	   </action>
+	</package>
+</struts>
