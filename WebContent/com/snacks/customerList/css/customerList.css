@@ -1,0 +1,30 @@
+.dataItem{
+    border: 1px solid #CDCDCD;
+    float: left;
+    height: 50px;
+    width: 100%;
+    background: #f9f9f9;
+    border-top:0px;
+    margin-left:-1px;
+}
+.dataItem h5{
+    margin-left:8px;
+}
+.dataArea{
+    float:left;
+    width:auto;
+}
+
+.buttonArea{
+    float:right;
+    width:380px;
+    padding:5px;
+    border-left:#cdcdcd 1px solid;
+}
+.article-post{
+    width:70%;
+}
+
+.article-post p{
+    width:70%;
+}

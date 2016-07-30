@@ -18,10 +18,7 @@ public class CustomerListAction extends BaseAction{
 	final Logger logger = Logger.getLogger(CustomerListAction.class);
 
 
-
 	private List<Map<String, Object>> fandianList;
-
-	private String name = "";
 
 	private String username = "";
 
@@ -29,18 +26,7 @@ public class CustomerListAction extends BaseAction{
 	CustomerListService customerListService;
 	
 	public String show(){
-		System.out.println("------------customerListAction show------------");
-//		List<Map<String ,Object>> list = customerListService.getCustomerList();
 
-//		for(int i=0;i<list.size();i++){
-//			list.get(i);
-//		}
-		username = "shaoyp";
-//
-//		for(Map<String, Object> m:list){
-//			System.out.println(m.get("resource_id"));
-//		}
-		
 		return "show";
 	}
 
@@ -52,20 +38,18 @@ public class CustomerListAction extends BaseAction{
 		return fandianList;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
-	}
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
 	public String getUsername() {
 		return username;
+	}
+
+	public String getList(){
+
+		fandianList = customerListService.getCustomerList();
+		return "getList";
 	}
 }
 

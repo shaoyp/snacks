@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-store">
-    <META HTTP-EQUIV="Expires" CONTENT="-1">
-</head>
-<body>
-
 
 <div id="content-header">
     <div id="breadcrumb"> <span class="tip-bottom"><i class="glyphicon glyphicon-zoom-in"></i>&nbsp;</span></div>
@@ -22,7 +13,7 @@
         <div class="span12">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-list"></i> </span>
-                    <h5>搜索项</h5>
+                    <h5>搜索项<s:property value="username" /> </h5>
                 </div>
                 <div class="widget-content"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
             </div>
@@ -36,51 +27,43 @@
                     <h5>客户信息</h5>
                 </div>
                 <div class="widget-content nopadding">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="odd gradeX">
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 4.0</td>
-                            <td>Win 95+</td>
-                            <td class="center"> 4</td>
-                            <td class="center">X</td>
-                        </tr>
-                        <tr class="even gradeC">
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 5.0</td>
-                            <td>Win 95+</td>
-                            <td class="center">5</td>
-                            <td class="center">C</td>
-                        </tr>
-                        <tr class="odd gradeA">
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 5.5</td>
-                            <td>Win 95+</td>
-                            <td class="center">5.5</td>
-                            <td class="center">A</td>
-                        </tr>
-                        <tr class="even gradeA">
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 6</td>
-                            <td>Win 98+</td>
-                            <td class="center">6</td>
-                            <td class="center">A</td>
-                        </tr>
-                        </tbody>
-                    </table>
+
+                    <ul class="recent-posts">
+                        <li>
+                            <%--<div class="dataArea">--%>
+                                <div class="user-thumb"> <img width="40" height="40" src="img/demo/av1.jpg" alt="User"> </div>
+                                <div class="buttonArea">
+                                    <select class="form-control" style="width:120px;">
+                                        <option>-- 销售状态 --</option>
+                                        <option>不需要</option>
+                                        <option>没打通</option>
+                                        <option>想了解</option>
+                                        <option>未来需要</option>
+                                        <option>特别需要</option>
+                                        <option>客户</option>
+                                    </select>
+                                    <input style="width:120px;" type="text" data-date="2013-02-01" data-date-format="yyyy-mm-dd" value="2013-02-01" class="datepicker span11">
+                                </div>
+                                <div class="article-post"> <span class="user-info"><h5>土老帽黄焖鸡</h5></span>
+                                    <p>电话:<a href="#">13838389438</a>&nbsp;&nbsp;&nbsp;地址:黄河北大街27号 </p>
+                                </div>
+
+                            <%--</div>--%>
+                        </li>
+                        <li>
+                            <div class="user-thumb"> <img width="40" height="40" src="img/demo/av2.jpg" alt="User"> </div>
+                            <div class="article-post"> <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
+                                <p>电话:<a href="#">13838389438</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="user-thumb"> <img width="40" height="40" src="img/demo/av4.jpg" alt="User"> </div>
+                            <div class="article-post"> <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
+                                <p><a href="#">This is a much longer one that will go on for a few lines.Itaffle to pad out the comment.</a> </p>
+                            </div>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
 
@@ -88,8 +71,6 @@
     </div>
 
 </div>
-<s:property value="username">
 
 <script src="<%=request.getContextPath()%>/com/snacks/customerList/js/customerList.js"></script>
-</body>
-</html>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/com/snacks/customerList/css/customerList.css" />

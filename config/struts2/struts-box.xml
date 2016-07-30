@@ -9,6 +9,7 @@
 
 		<action name="customerList_*" class="customerListAction" method="{1}">
 			<result name="show">/com/snacks/customerList/jsp/customerList.jsp</result>
+			<result name="getList" type="json"></result>
 
 		</action>
 	</package>

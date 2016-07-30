@@ -15,6 +15,8 @@ String loginName = request.getRemoteUser();
 <link rel="stylesheet" href="<%=path %>/com/snacks/box/css/matrix-media.css" />
 <link rel="stylesheet" href="<%=path %>/com/snacks/box/font-awesome/css/font-awesome.css" />
 <link rel="stylesheet" href="<%=path %>/com/snacks/box/css/jquery.gritter.css" />
+<link rel="stylesheet" href="<%=path %>/com/snacks/box/css/datepicker.css" />
+<link rel="stylesheet" href="<%=path %>/com/snacks/box/css/colorpicker.css" />
 <%--<script src="<%=path %>/com/snacks/plugin/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>--%>
 <script src="<%=path %>/com/snacks/box/js/jquery.min.js"></script>
 
@@ -24,7 +26,21 @@ String loginName = request.getRemoteUser();
 
 <%--<script src="<%=path %>/com/snacks/box/js/excanvas.min.js"></script>--%>
 <%--<script src="<%=path %>/com/snacks/box/js/jquery.ui.custom.js"></script>--%>
+<%--<script src="<%=path %>/com/snacks/box/js/bootstrap.min.js"></script>--%>
+<script src="<%=path %>/com/snacks/box/js/bootstrap-datepicker.js"></script>
+<script src="<%=path %>/com/snacks/box/js/jquery.ui.custom.js"></script>
 <script src="<%=path %>/com/snacks/box/js/bootstrap.min.js"></script>
+<script src="<%=path %>/com/snacks/box/js/bootstrap-colorpicker.js"></script>
+<%--<script src="<%=path %>/com/snacks/box/js/bootstrap-datepicker.js"></script>--%>
+<%--<script src="<%=path %>/com/snacks/box/js/jquery.toggle.buttons.html"></script>--%>
+<script src="<%=path %>/com/snacks/box/js/masked.js"></script>
+<script src="<%=path %>/com/snacks/box/js/jquery.uniform.js"></script>
+<script src="<%=path %>/com/snacks/box/js/select2.min.js"></script>
+<script src="<%=path %>/com/snacks/box/js/matrix.js"></script>
+<%--<script src="<%=path %>/com/snacks/box/js/matrix.form_common.js"></script>--%>
+<script src="<%=path %>/com/snacks/box/js/wysihtml5-0.3.0.js"></script>
+<script src="<%=path %>/com/snacks/box/js/jquery.peity.min.js"></script>
+<script src="<%=path %>/com/snacks/box/js/bootstrap-wysihtml5.js"></script>
 <%--<script src="<%=path %>/com/snacks/box/js/jquery.flot.min.js"></script>--%>
 <%--<script src="<%=path %>/com/snacks/box/js/jquery.flot.resize.min.js"></script>--%>
 <%--<script src="<%=path %>/com/snacks/box/js/jquery.peity.min.js"></script>--%>
