@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<!--breadcrumbs-->
+<%@taglib uri="/struts-tags" prefix="s" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-store">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+</head>
+<body>
+
+
 <div id="content-header">
     <div id="breadcrumb"> <span class="tip-bottom"><i class="glyphicon glyphicon-zoom-in"></i>&nbsp;</span></div>
 </div>
@@ -78,6 +88,8 @@
     </div>
 
 </div>
-
+<s:property value="username">
 
 <script src="<%=request.getContextPath()%>/com/snacks/customerList/js/customerList.js"></script>
+</body>
+</html>
