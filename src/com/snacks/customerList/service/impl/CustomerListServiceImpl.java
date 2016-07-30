@@ -2,7 +2,6 @@ package com.snacks.customerList.service.impl;
 
 import com.snacks.customerList.dao.CustomerListMapper;
 import com.snacks.customerList.service.CustomerListService;
-import com.sun.javafx.collections.MappingChange;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

@@ -7,7 +7,6 @@ $(function () {
     $(window).hashchange(function () {
         var pt = getParameter(location.hash,"pt","");
         if(pt != ""){
-            alert(pt)
             box.js.load(pt);
         }
     });
