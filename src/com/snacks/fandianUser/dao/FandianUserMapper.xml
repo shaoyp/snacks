@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snacks.fandianUser.dao.FandianUserMapper" >
+  <resultMap id="BaseResultMap" type="com.snacks.fandianUser.model.FandianUser" >
+    <id column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="fandian_id" property="fandianId" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="recall_date" property="recallDate" jdbcType="DATE" />
+    <result column="beizhu" property="beizhu" jdbcType="VARCHAR" />
+    <result column="last_date" property="lastDate" jdbcType="DATE" />
+    <result column="wechat" property="wechat" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    resource_id, user_id, fandian_id, state, recall_date, beizhu, last_date, wechat
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from fandian_user
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from fandian_user
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.snacks.fandianUser.model.FandianUser" >
+    insert into fandian_user (resource_id, user_id, fandian_id, 
+      state, recall_date, beizhu, 
+      last_date, wechat)
+    values (#{resourceId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{fandianId,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{recallDate,jdbcType=DATE}, #{beizhu,jdbcType=VARCHAR}, 
+      #{lastDate,jdbcType=DATE}, #{wechat,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.snacks.fandianUser.model.FandianUser" >
+    insert into fandian_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        resource_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="fandianId != null" >
+        fandian_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="recallDate != null" >
+        recall_date,
+      </if>
+      <if test="beizhu != null" >
+        beizhu,
+      </if>
+      <if test="lastDate != null" >
+        last_date,
+      </if>
+      <if test="wechat != null" >
+        wechat,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="fandianId != null" >
+        #{fandianId,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="recallDate != null" >
+        #{recallDate,jdbcType=DATE},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="lastDate != null" >
+        #{lastDate,jdbcType=DATE},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snacks.fandianUser.model.FandianUser" >
+    update fandian_user
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="fandianId != null" >
+        fandian_id = #{fandianId,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="recallDate != null" >
+        recall_date = #{recallDate,jdbcType=DATE},
+      </if>
+      <if test="beizhu != null" >
+        beizhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="lastDate != null" >
+        last_date = #{lastDate,jdbcType=DATE},
+      </if>
+      <if test="wechat != null" >
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snacks.fandianUser.model.FandianUser" >
+    update fandian_user
+    set user_id = #{userId,jdbcType=VARCHAR},
+      fandian_id = #{fandianId,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      recall_date = #{recallDate,jdbcType=DATE},
+      beizhu = #{beizhu,jdbcType=VARCHAR},
+      last_date = #{lastDate,jdbcType=DATE},
+      wechat = #{wechat,jdbcType=VARCHAR}
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </update>
+</mapper>

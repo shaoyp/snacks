@@ -63,7 +63,7 @@ public class UserAction extends BaseAction{
 	
 	public String add(){
 		try {
-			user.setId(null);
+			user.setResourceId(null);
 			int count = userService.add(user);
 			if(count == 1){
 				statusCode = "200";
@@ -110,7 +110,7 @@ public class UserAction extends BaseAction{
 	}
 
 	public String update(){
-		logger.info("-------------------------userAction show--------------------------:" + user.getId());
+		logger.info("-------------------------userAction show--------------------------:" + user.getResourceId());
 		try {
 			int count = userService.update(user);
 			if(count > 0){

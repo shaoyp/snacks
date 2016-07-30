@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snacks.elemewaimai.dao.ElemewaimaiMapper" >
+  <resultMap id="BaseResultMap" type="com.snacks.elemewaimai.model.Elemewaimai" >
+    <id column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="evaluate" property="evaluate" jdbcType="VARCHAR" />
+    <result column="sales" property="sales" jdbcType="VARCHAR" />
+    <result column="get_time" property="getTime" jdbcType="TIMESTAMP" />
+    <result column="areaid" property="areaid" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.snacks.elemewaimai.model.Elemewaimai" extends="BaseResultMap" >
+    <result column="caipin" property="caipin" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    resource_id, title, url, address, phone, evaluate, sales, get_time, areaid
+  </sql>
+  <sql id="Blob_Column_List" >
+    caipin
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from elemewaimai
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from elemewaimai
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.snacks.elemewaimai.model.Elemewaimai" >
+    insert into elemewaimai (resource_id, title, url, 
+      address, phone, evaluate, 
+      sales, get_time, areaid, 
+      caipin)
+    values (#{resourceId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{evaluate,jdbcType=VARCHAR}, 
+      #{sales,jdbcType=VARCHAR}, #{getTime,jdbcType=TIMESTAMP}, #{areaid,jdbcType=VARCHAR}, 
+      #{caipin,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.snacks.elemewaimai.model.Elemewaimai" >
+    insert into elemewaimai
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        resource_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="evaluate != null" >
+        evaluate,
+      </if>
+      <if test="sales != null" >
+        sales,
+      </if>
+      <if test="getTime != null" >
+        get_time,
+      </if>
+      <if test="areaid != null" >
+        areaid,
+      </if>
+      <if test="caipin != null" >
+        caipin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluate != null" >
+        #{evaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="sales != null" >
+        #{sales,jdbcType=VARCHAR},
+      </if>
+      <if test="getTime != null" >
+        #{getTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaid != null" >
+        #{areaid,jdbcType=VARCHAR},
+      </if>
+      <if test="caipin != null" >
+        #{caipin,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snacks.elemewaimai.model.Elemewaimai" >
+    update elemewaimai
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluate != null" >
+        evaluate = #{evaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="sales != null" >
+        sales = #{sales,jdbcType=VARCHAR},
+      </if>
+      <if test="getTime != null" >
+        get_time = #{getTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaid != null" >
+        areaid = #{areaid,jdbcType=VARCHAR},
+      </if>
+      <if test="caipin != null" >
+        caipin = #{caipin,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.snacks.elemewaimai.model.Elemewaimai" >
+    update elemewaimai
+    set title = #{title,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      evaluate = #{evaluate,jdbcType=VARCHAR},
+      sales = #{sales,jdbcType=VARCHAR},
+      get_time = #{getTime,jdbcType=TIMESTAMP},
+      areaid = #{areaid,jdbcType=VARCHAR},
+      caipin = #{caipin,jdbcType=LONGVARCHAR}
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snacks.elemewaimai.model.Elemewaimai" >
+    update elemewaimai
+    set title = #{title,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      evaluate = #{evaluate,jdbcType=VARCHAR},
+      sales = #{sales,jdbcType=VARCHAR},
+      get_time = #{getTime,jdbcType=TIMESTAMP},
+      areaid = #{areaid,jdbcType=VARCHAR}
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snacks.fandiandata.dao.FandiandataMapper" >
+  <resultMap id="BaseResultMap" type="com.snacks.fandiandata.model.Fandiandata" >
+    <id column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="meituanvaluate" property="meituanvaluate" jdbcType="VARCHAR" />
+    <result column="elemevaluate" property="elemevaluate" jdbcType="VARCHAR" />
+    <result column="baiduevaluate" property="baiduevaluate" jdbcType="VARCHAR" />
+    <result column="sales" property="sales" jdbcType="VARCHAR" />
+    <result column="get_time" property="getTime" jdbcType="TIMESTAMP" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="lng" property="lng" jdbcType="VARCHAR" />
+    <result column="lat" property="lat" jdbcType="VARCHAR" />
+    <result column="baidu" property="baidu" jdbcType="VARCHAR" />
+    <result column="meituan" property="meituan" jdbcType="VARCHAR" />
+    <result column="eleme" property="eleme" jdbcType="VARCHAR" />
+    <result column="baidusales" property="baidusales" jdbcType="INTEGER" />
+    <result column="meituansales" property="meituansales" jdbcType="INTEGER" />
+    <result column="elemesales" property="elemesales" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    resource_id, title, url, address, phone, meituanvaluate, elemevaluate, baiduevaluate, 
+    sales, get_time, province, city, lng, lat, baidu, meituan, eleme, baidusales, meituansales, 
+    elemesales
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from fandiandata
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from fandiandata
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.snacks.fandiandata.model.Fandiandata" >
+    insert into fandiandata (resource_id, title, url, 
+      address, phone, meituanvaluate, 
+      elemevaluate, baiduevaluate, sales, 
+      get_time, province, city, 
+      lng, lat, baidu, meituan, 
+      eleme, baidusales, meituansales, 
+      elemesales)
+    values (#{resourceId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{meituanvaluate,jdbcType=VARCHAR}, 
+      #{elemevaluate,jdbcType=VARCHAR}, #{baiduevaluate,jdbcType=VARCHAR}, #{sales,jdbcType=VARCHAR}, 
+      #{getTime,jdbcType=TIMESTAMP}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{baidu,jdbcType=VARCHAR}, #{meituan,jdbcType=VARCHAR}, 
+      #{eleme,jdbcType=VARCHAR}, #{baidusales,jdbcType=INTEGER}, #{meituansales,jdbcType=INTEGER}, 
+      #{elemesales,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.snacks.fandiandata.model.Fandiandata" >
+    insert into fandiandata
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        resource_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="meituanvaluate != null" >
+        meituanvaluate,
+      </if>
+      <if test="elemevaluate != null" >
+        elemevaluate,
+      </if>
+      <if test="baiduevaluate != null" >
+        baiduevaluate,
+      </if>
+      <if test="sales != null" >
+        sales,
+      </if>
+      <if test="getTime != null" >
+        get_time,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="lng != null" >
+        lng,
+      </if>
+      <if test="lat != null" >
+        lat,
+      </if>
+      <if test="baidu != null" >
+        baidu,
+      </if>
+      <if test="meituan != null" >
+        meituan,
+      </if>
+      <if test="eleme != null" >
+        eleme,
+      </if>
+      <if test="baidusales != null" >
+        baidusales,
+      </if>
+      <if test="meituansales != null" >
+        meituansales,
+      </if>
+      <if test="elemesales != null" >
+        elemesales,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="meituanvaluate != null" >
+        #{meituanvaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="elemevaluate != null" >
+        #{elemevaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduevaluate != null" >
+        #{baiduevaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="sales != null" >
+        #{sales,jdbcType=VARCHAR},
+      </if>
+      <if test="getTime != null" >
+        #{getTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="baidu != null" >
+        #{baidu,jdbcType=VARCHAR},
+      </if>
+      <if test="meituan != null" >
+        #{meituan,jdbcType=VARCHAR},
+      </if>
+      <if test="eleme != null" >
+        #{eleme,jdbcType=VARCHAR},
+      </if>
+      <if test="baidusales != null" >
+        #{baidusales,jdbcType=INTEGER},
+      </if>
+      <if test="meituansales != null" >
+        #{meituansales,jdbcType=INTEGER},
+      </if>
+      <if test="elemesales != null" >
+        #{elemesales,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snacks.fandiandata.model.Fandiandata" >
+    update fandiandata
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="meituanvaluate != null" >
+        meituanvaluate = #{meituanvaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="elemevaluate != null" >
+        elemevaluate = #{elemevaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduevaluate != null" >
+        baiduevaluate = #{baiduevaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="sales != null" >
+        sales = #{sales,jdbcType=VARCHAR},
+      </if>
+      <if test="getTime != null" >
+        get_time = #{getTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        lng = #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        lat = #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="baidu != null" >
+        baidu = #{baidu,jdbcType=VARCHAR},
+      </if>
+      <if test="meituan != null" >
+        meituan = #{meituan,jdbcType=VARCHAR},
+      </if>
+      <if test="eleme != null" >
+        eleme = #{eleme,jdbcType=VARCHAR},
+      </if>
+      <if test="baidusales != null" >
+        baidusales = #{baidusales,jdbcType=INTEGER},
+      </if>
+      <if test="meituansales != null" >
+        meituansales = #{meituansales,jdbcType=INTEGER},
+      </if>
+      <if test="elemesales != null" >
+        elemesales = #{elemesales,jdbcType=INTEGER},
+      </if>
+    </set>
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snacks.fandiandata.model.Fandiandata" >
+    update fandiandata
+    set title = #{title,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      meituanvaluate = #{meituanvaluate,jdbcType=VARCHAR},
+      elemevaluate = #{elemevaluate,jdbcType=VARCHAR},
+      baiduevaluate = #{baiduevaluate,jdbcType=VARCHAR},
+      sales = #{sales,jdbcType=VARCHAR},
+      get_time = #{getTime,jdbcType=TIMESTAMP},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      lng = #{lng,jdbcType=VARCHAR},
+      lat = #{lat,jdbcType=VARCHAR},
+      baidu = #{baidu,jdbcType=VARCHAR},
+      meituan = #{meituan,jdbcType=VARCHAR},
+      eleme = #{eleme,jdbcType=VARCHAR},
+      baidusales = #{baidusales,jdbcType=INTEGER},
+      meituansales = #{meituansales,jdbcType=INTEGER},
+      elemesales = #{elemesales,jdbcType=INTEGER}
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </update>
+</mapper>

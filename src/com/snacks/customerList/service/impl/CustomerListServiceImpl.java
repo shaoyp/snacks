@@ -18,7 +18,7 @@ public class CustomerListServiceImpl implements CustomerListService {
     CustomerListMapper customerListMapper;
 
     public List<Map<String, Object>> getCustomerList(){
-
+        System.out.println("--------------2222");
         return customerListMapper.getCustomerList();
     }
 }

@@ -6,13 +6,13 @@ import java.util.Map;
 import com.snacks.user.model.User;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String resourceId);
 
     int insert(User record);
 
     int insertSelective(User record);
 
-    User selectByPrimaryKey(Integer id);
+    User selectByPrimaryKey(String resourceId);
 
     int updateByPrimaryKeySelective(User record);
 
@@ -20,7 +20,7 @@ public interface UserMapper {
     
     User selectByUsername(String username);
 
-	List<User> selectByPagerList(Map<String, Object> queryConditions);
+   	List<User> selectByPagerList(Map<String, Object> queryConditions);
 
-	int selectByPagerCount(Map<String, Object> queryConditions);
+   	int selectByPagerCount(Map<String, Object> queryConditions);
 }

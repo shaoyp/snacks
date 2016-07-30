@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snacks.customerList.dao.CustomerListMapper" >
+  <resultMap id="BaseResultMap" type="com.snacks.customerList.model.Fandian" >
+    <id column="resource_id" property="resource_id" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    resource_id, title, address, phone
+  </sql>
+  <select id="getCustomerList" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from fandian
+  </select>
+
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snacks.codeArea.dao.CodeAreaMapper" >
+  <resultMap id="BaseResultMap" type="com.snacks.codeArea.model.CodeArea" >
+    <id column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="is_enable" property="isEnable" jdbcType="VARCHAR" />
+    <result column="area_abba" property="areaAbba" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    resource_id, area_name, order_id, is_enable, area_abba
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from code_area
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from code_area
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.snacks.codeArea.model.CodeArea" >
+    insert into code_area (resource_id, area_name, order_id, 
+      is_enable, area_abba)
+    values (#{resourceId,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{isEnable,jdbcType=VARCHAR}, #{areaAbba,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.snacks.codeArea.model.CodeArea" >
+    insert into code_area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        resource_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="isEnable != null" >
+        is_enable,
+      </if>
+      <if test="areaAbba != null" >
+        area_abba,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnable != null" >
+        #{isEnable,jdbcType=VARCHAR},
+      </if>
+      <if test="areaAbba != null" >
+        #{areaAbba,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snacks.codeArea.model.CodeArea" >
+    update code_area
+    <set >
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnable != null" >
+        is_enable = #{isEnable,jdbcType=VARCHAR},
+      </if>
+      <if test="areaAbba != null" >
+        area_abba = #{areaAbba,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snacks.codeArea.model.CodeArea" >
+    update code_area
+    set area_name = #{areaName,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      is_enable = #{isEnable,jdbcType=VARCHAR},
+      area_abba = #{areaAbba,jdbcType=VARCHAR}
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </update>
+</mapper>

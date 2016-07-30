@@ -3,7 +3,7 @@ package com.snacks.user.model;
 import java.util.Date;
 
 public class User {
-    private Integer id;
+    private String resourceId;
 
     private String username;
 
@@ -11,22 +11,20 @@ public class User {
 
     private String nickname;
 
-    private String account;
+    private Date createTime;
 
-    private Date createime;
-
-    private Integer level;
+    private String level;
 
     private String email;
 
     private String phone;
 
-    public Integer getId() {
-        return id;
+    public String getResourceId() {
+        return resourceId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setResourceId(String resourceId) {
+        this.resourceId = resourceId == null ? null : resourceId.trim();
     }
 
     public String getUsername() {
@@ -53,28 +51,20 @@ public class User {
         this.nickname = nickname == null ? null : nickname.trim();
     }
 
-    public String getAccount() {
-        return account;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setAccount(String account) {
-        this.account = account == null ? null : account.trim();
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getCreateime() {
-        return createime;
-    }
-
-    public void setCreateime(Date createime) {
-        this.createime = createime;
-    }
-
-    public Integer getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setLevel(String level) {
+        this.level = level == null ? null : level.trim();
     }
 
     public String getEmail() {

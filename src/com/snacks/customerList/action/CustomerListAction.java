@@ -21,12 +21,12 @@ public class CustomerListAction extends BaseAction{
 	CustomerListService customerListService;
 	
 	public String show(){
-
+		System.out.println("------------customerListAction show------------");
 		List<Map<String ,Object>> list = customerListService.getCustomerList();
-//
-//		for(Map<String, Object> m:list){
-//			System.out.println(m.get("RESOURCE_ID"));
-//		}
+
+		for(Map<String, Object> m:list){
+			System.out.println(m.get("RESOURCE_ID"));
+		}
 		
 		return "show";
 	}

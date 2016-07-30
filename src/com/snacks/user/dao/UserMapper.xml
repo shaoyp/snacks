@@ -2,19 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.snacks.user.dao.UserMapper" >
   <resultMap id="BaseResultMap" type="com.snacks.user.model.User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="resource_id" property="resourceId" jdbcType="VARCHAR" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="nickname" property="nickname" jdbcType="VARCHAR" />
-    <result column="account" property="account" jdbcType="VARCHAR" />
-    <result column="createime" property="createime" jdbcType="TIMESTAMP" />
-    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, username, password, nickname, account, createime, level, email, phone
+    resource_id, username, password, nickname, create_time, level, email, phone
   </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </select>
   <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
@@ -33,31 +38,23 @@
     select count(0)
     from user
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from user
-    where id = #{id,jdbcType=INTEGER}
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.snacks.user.model.User" >
-    insert into user (id, username, password, 
-      nickname, account, createime, 
-      level, email, phone
-      )
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{nickname,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{createime,jdbcType=TIMESTAMP}, 
-      #{level,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}
-      )
+    insert into user (resource_id, username, password, 
+      nickname, create_time, level, 
+      email, phone)
+    values (#{resourceId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{level,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.snacks.user.model.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
+      <if test="resourceId != null" >
+        resource_id,
       </if>
       <if test="username != null" >
         username,
@@ -68,11 +65,8 @@
       <if test="nickname != null" >
         nickname,
       </if>
-      <if test="account != null" >
-        account,
-      </if>
-      <if test="createime != null" >
-        createime,
+      <if test="createTime != null" >
+        create_time,
       </if>
       <if test="level != null" >
         level,
@@ -85,8 +79,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=VARCHAR},
       </if>
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
@@ -97,14 +91,11 @@
       <if test="nickname != null" >
         #{nickname,jdbcType=VARCHAR},
       </if>
-      <if test="account != null" >
-        #{account,jdbcType=VARCHAR},
-      </if>
-      <if test="createime != null" >
-        #{createime,jdbcType=TIMESTAMP},
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="level != null" >
-        #{level,jdbcType=INTEGER},
+        #{level,jdbcType=VARCHAR},
       </if>
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
@@ -126,14 +117,11 @@
       <if test="nickname != null" >
         nickname = #{nickname,jdbcType=VARCHAR},
       </if>
-      <if test="account != null" >
-        account = #{account,jdbcType=VARCHAR},
-      </if>
-      <if test="createime != null" >
-        createime = #{createime,jdbcType=TIMESTAMP},
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="level != null" >
-        level = #{level,jdbcType=INTEGER},
+        level = #{level,jdbcType=VARCHAR},
       </if>
       <if test="email != null" >
         email = #{email,jdbcType=VARCHAR},
@@ -142,18 +130,17 @@
         phone = #{phone,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snacks.user.model.User" >
     update user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       nickname = #{nickname,jdbcType=VARCHAR},
-      account = #{account,jdbcType=VARCHAR},
-      createime = #{createime,jdbcType=TIMESTAMP},
-      level = #{level,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      level = #{level,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
   </update>
 </mapper>

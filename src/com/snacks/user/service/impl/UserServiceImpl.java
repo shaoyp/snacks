@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
 		String[] idAry = ids.split(",");
 		int result = 0;
 		for(String id : idAry){
-			result = userMapper.deleteByPrimaryKey(Integer.parseInt(id.trim()));
+			result = userMapper.deleteByPrimaryKey(id.trim());
 			if(result == 0){
 				return 0;
 			}
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	public User getDetailById(String id) throws Exception{
 		
-		return userMapper.selectByPrimaryKey(Integer.parseInt(id));
+		return userMapper.selectByPrimaryKey(id);
 	}
 
 	/* (non-Javadoc)

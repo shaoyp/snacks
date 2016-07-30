@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snacks.fandian.dao.FandianMapper" >
+  <resultMap id="BaseResultMap" type="com.snacks.fandian.model.Fandian" >
+    <id column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="meituanvaluate" property="meituanvaluate" jdbcType="VARCHAR" />
+    <result column="elemevaluate" property="elemevaluate" jdbcType="VARCHAR" />
+    <result column="baiduevaluate" property="baiduevaluate" jdbcType="VARCHAR" />
+    <result column="lastmonthsales" property="lastmonthsales" jdbcType="VARCHAR" />
+    <result column="totlesales" property="totlesales" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="lng" property="lng" jdbcType="VARCHAR" />
+    <result column="lat" property="lat" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="baidu" property="baidu" jdbcType="VARCHAR" />
+    <result column="eleme" property="eleme" jdbcType="VARCHAR" />
+    <result column="meituan" property="meituan" jdbcType="VARCHAR" />
+    <result column="newre" property="newre" jdbcType="VARCHAR" />
+    <result column="eachmonthsales" property="eachmonthsales" jdbcType="VARCHAR" />
+    <result column="diqu" property="diqu" jdbcType="VARCHAR" />
+    <result column="areaid" property="areaid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    resource_id, title, url, address, phone, meituanvaluate, elemevaluate, baiduevaluate, 
+    lastmonthsales, totlesales, province, city, lng, lat, state, updatetime, baidu, eleme, 
+    meituan, newre, eachmonthsales, diqu, areaid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from fandian
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from fandian
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.snacks.fandian.model.Fandian" >
+    insert into fandian (resource_id, title, url, 
+      address, phone, meituanvaluate, 
+      elemevaluate, baiduevaluate, lastmonthsales, 
+      totlesales, province, city, 
+      lng, lat, state, updatetime, 
+      baidu, eleme, meituan, 
+      newre, eachmonthsales, diqu, 
+      areaid)
+    values (#{resourceId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{meituanvaluate,jdbcType=VARCHAR}, 
+      #{elemevaluate,jdbcType=VARCHAR}, #{baiduevaluate,jdbcType=VARCHAR}, #{lastmonthsales,jdbcType=VARCHAR}, 
+      #{totlesales,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{baidu,jdbcType=VARCHAR}, #{eleme,jdbcType=VARCHAR}, #{meituan,jdbcType=VARCHAR}, 
+      #{newre,jdbcType=VARCHAR}, #{eachmonthsales,jdbcType=VARCHAR}, #{diqu,jdbcType=VARCHAR}, 
+      #{areaid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.snacks.fandian.model.Fandian" >
+    insert into fandian
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        resource_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="meituanvaluate != null" >
+        meituanvaluate,
+      </if>
+      <if test="elemevaluate != null" >
+        elemevaluate,
+      </if>
+      <if test="baiduevaluate != null" >
+        baiduevaluate,
+      </if>
+      <if test="lastmonthsales != null" >
+        lastmonthsales,
+      </if>
+      <if test="totlesales != null" >
+        totlesales,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="lng != null" >
+        lng,
+      </if>
+      <if test="lat != null" >
+        lat,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="baidu != null" >
+        baidu,
+      </if>
+      <if test="eleme != null" >
+        eleme,
+      </if>
+      <if test="meituan != null" >
+        meituan,
+      </if>
+      <if test="newre != null" >
+        newre,
+      </if>
+      <if test="eachmonthsales != null" >
+        eachmonthsales,
+      </if>
+      <if test="diqu != null" >
+        diqu,
+      </if>
+      <if test="areaid != null" >
+        areaid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="meituanvaluate != null" >
+        #{meituanvaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="elemevaluate != null" >
+        #{elemevaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduevaluate != null" >
+        #{baiduevaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmonthsales != null" >
+        #{lastmonthsales,jdbcType=VARCHAR},
+      </if>
+      <if test="totlesales != null" >
+        #{totlesales,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baidu != null" >
+        #{baidu,jdbcType=VARCHAR},
+      </if>
+      <if test="eleme != null" >
+        #{eleme,jdbcType=VARCHAR},
+      </if>
+      <if test="meituan != null" >
+        #{meituan,jdbcType=VARCHAR},
+      </if>
+      <if test="newre != null" >
+        #{newre,jdbcType=VARCHAR},
+      </if>
+      <if test="eachmonthsales != null" >
+        #{eachmonthsales,jdbcType=VARCHAR},
+      </if>
+      <if test="diqu != null" >
+        #{diqu,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null" >
+        #{areaid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snacks.fandian.model.Fandian" >
+    update fandian
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="meituanvaluate != null" >
+        meituanvaluate = #{meituanvaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="elemevaluate != null" >
+        elemevaluate = #{elemevaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduevaluate != null" >
+        baiduevaluate = #{baiduevaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmonthsales != null" >
+        lastmonthsales = #{lastmonthsales,jdbcType=VARCHAR},
+      </if>
+      <if test="totlesales != null" >
+        totlesales = #{totlesales,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        lng = #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        lat = #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baidu != null" >
+        baidu = #{baidu,jdbcType=VARCHAR},
+      </if>
+      <if test="eleme != null" >
+        eleme = #{eleme,jdbcType=VARCHAR},
+      </if>
+      <if test="meituan != null" >
+        meituan = #{meituan,jdbcType=VARCHAR},
+      </if>
+      <if test="newre != null" >
+        newre = #{newre,jdbcType=VARCHAR},
+      </if>
+      <if test="eachmonthsales != null" >
+        eachmonthsales = #{eachmonthsales,jdbcType=VARCHAR},
+      </if>
+      <if test="diqu != null" >
+        diqu = #{diqu,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null" >
+        areaid = #{areaid,jdbcType=CHAR},
+      </if>
+    </set>
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snacks.fandian.model.Fandian" >
+    update fandian
+    set title = #{title,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      meituanvaluate = #{meituanvaluate,jdbcType=VARCHAR},
+      elemevaluate = #{elemevaluate,jdbcType=VARCHAR},
+      baiduevaluate = #{baiduevaluate,jdbcType=VARCHAR},
+      lastmonthsales = #{lastmonthsales,jdbcType=VARCHAR},
+      totlesales = #{totlesales,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      lng = #{lng,jdbcType=VARCHAR},
+      lat = #{lat,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      baidu = #{baidu,jdbcType=VARCHAR},
+      eleme = #{eleme,jdbcType=VARCHAR},
+      meituan = #{meituan,jdbcType=VARCHAR},
+      newre = #{newre,jdbcType=VARCHAR},
+      eachmonthsales = #{eachmonthsales,jdbcType=VARCHAR},
+      diqu = #{diqu,jdbcType=VARCHAR},
+      areaid = #{areaid,jdbcType=CHAR}
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </update>
+</mapper>

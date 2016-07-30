@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snacks.caipin.dao.CaipinMapper" >
+  <resultMap id="BaseResultMap" type="com.snacks.caipin.model.Caipin" >
+    <id column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+    <result column="caipinming" property="caipinming" jdbcType="VARCHAR" />
+    <result column="fandianid" property="fandianid" jdbcType="VARCHAR" />
+    <result column="sales" property="sales" jdbcType="VARCHAR" />
+    <result column="prince" property="prince" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    resource_id, caipinming, fandianid, sales, prince
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from caipin
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from caipin
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.snacks.caipin.model.Caipin" >
+    insert into caipin (resource_id, caipinming, fandianid, 
+      sales, prince)
+    values (#{resourceId,jdbcType=VARCHAR}, #{caipinming,jdbcType=VARCHAR}, #{fandianid,jdbcType=VARCHAR}, 
+      #{sales,jdbcType=VARCHAR}, #{prince,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.snacks.caipin.model.Caipin" >
+    insert into caipin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        resource_id,
+      </if>
+      <if test="caipinming != null" >
+        caipinming,
+      </if>
+      <if test="fandianid != null" >
+        fandianid,
+      </if>
+      <if test="sales != null" >
+        sales,
+      </if>
+      <if test="prince != null" >
+        prince,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="caipinming != null" >
+        #{caipinming,jdbcType=VARCHAR},
+      </if>
+      <if test="fandianid != null" >
+        #{fandianid,jdbcType=VARCHAR},
+      </if>
+      <if test="sales != null" >
+        #{sales,jdbcType=VARCHAR},
+      </if>
+      <if test="prince != null" >
+        #{prince,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snacks.caipin.model.Caipin" >
+    update caipin
+    <set >
+      <if test="caipinming != null" >
+        caipinming = #{caipinming,jdbcType=VARCHAR},
+      </if>
+      <if test="fandianid != null" >
+        fandianid = #{fandianid,jdbcType=VARCHAR},
+      </if>
+      <if test="sales != null" >
+        sales = #{sales,jdbcType=VARCHAR},
+      </if>
+      <if test="prince != null" >
+        prince = #{prince,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snacks.caipin.model.Caipin" >
+    update caipin
+    set caipinming = #{caipinming,jdbcType=VARCHAR},
+      fandianid = #{fandianid,jdbcType=VARCHAR},
+      sales = #{sales,jdbcType=VARCHAR},
+      prince = #{prince,jdbcType=VARCHAR}
+    where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </update>
+</mapper>

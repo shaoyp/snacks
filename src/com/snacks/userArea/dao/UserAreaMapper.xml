@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snacks.userArea.dao.UserAreaMapper" >
+  <resultMap id="BaseResultMap" type="com.snacks.userArea.model.UserArea" >
+    <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.snacks.userArea.model.UserArea" >
+    insert into user_area (resource_id, user_id, area_id
+      )
+    values (#{resourceId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{areaId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.snacks.userArea.model.UserArea" >
+    insert into user_area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        resource_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
