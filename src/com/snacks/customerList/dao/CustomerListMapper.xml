@@ -7,18 +7,18 @@
   </sql>
   <select id="getCustomerList" resultType="java.util.Map" >
     select 
-    <include refid="Base_Column_List" />
-    from fandian
+    f.resource_id,f.title,f.address,f.phone,fu.resource_id fuid,fu.state fustate,date_format(fu.last_date,'%Y-%m-%d') last_date,fu.wechat
+    FROM fandian f left OUTER JOIN fandian_user fu on f.resource_id = fu.fandian_id
   </select>
 
   <!--修改状态-->
   <update id="updateFandianUser" parameterType="com.snacks.fandianUser.model.FandianUser">
-    UPDATE fandian
+    UPDATE fandian_user
        SET state = #{state, jdbcType=VARCHAR},
            recall_date = #{recallDate, jdbcType=VARCHAR},
            beizhu = #{beizhu, jdbcType=VARCHAR},
-           wechat = #{wechat, jdbcType=VARCHAR}
-
+           wechat = #{wechat, jdbcType=VARCHAR},
+           last_date = now()
      WHERE resource_id = #{resourceId, jdbcType=VARCHAR}
   </update>
 
@@ -67,7 +67,7 @@
       ,#{beizhu, jdbcType=VARCHAR}
       </if>
       <if test="lastDate != null">
-      ,#{lastDate, jdbcType=VARCHAR}
+      ,now()
       </if>
       <if test="wechat != null">
       ,#{wechat, jdbcType=VARCHAR}

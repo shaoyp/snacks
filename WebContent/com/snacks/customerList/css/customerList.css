@@ -32,3 +32,14 @@
 .top-button-box :last-child{
     margin-right:0;
 }
+
+.called{
+    background: #fbe5e3;
+}
+
+.not_save{
+    border-color: #c09853 !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset !important;
+    background: rgba(255, 220, 153, 0.94) !important;
+
+}

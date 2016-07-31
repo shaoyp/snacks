@@ -13,7 +13,6 @@ $(function () {
     if(pt != "") {
         box.js.load(pt);
     }
-
 });
 box.js = {};
 box.js.menucheck = function(menupath,pid,cid,obj){
@@ -21,7 +20,7 @@ box.js.menucheck = function(menupath,pid,cid,obj){
 }
 box.js.load = function (to) {
     $('#content').load(to);
-    var mo = to.split("/");
-    $.getScript("/snacks/com/snacks/"+mo[2]+"/js/"+mo[2]+".js");
+    // var mo = to.split("/");
+    // $.getScript("/snacks/com/snacks/"+mo[2]+"/js/"+mo[2]+".js");
 
 }

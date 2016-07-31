@@ -29,7 +29,7 @@ public class CustomerListServiceImpl implements CustomerListService {
      * @param fandianUser
      */
     public void operFandianUser(FandianUser fandianUser){
-        if(null == fandianUser.getResourceId()){
+        if(null == fandianUser.getResourceId() || "".equals(fandianUser.getResourceId())){
             fandianUser.setResourceId(UtilTools.getSequence(null));
             customerListMapper.addFandianUser(fandianUser);
         }else {
