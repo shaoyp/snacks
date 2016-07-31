@@ -11,4 +11,67 @@
     from fandian
   </select>
 
+  <!--修改状态-->
+  <update id="updateFandianUser" parameterType="com.snacks.fandianUser.model.FandianUser">
+    UPDATE fandian
+       SET state = #{state, jdbcType=VARCHAR},
+           recall_date = #{recallDate, jdbcType=VARCHAR},
+           beizhu = #{beizhu, jdbcType=VARCHAR},
+           wechat = #{wechat, jdbcType=VARCHAR}
+
+     WHERE resource_id = #{resourceId, jdbcType=VARCHAR}
+  </update>
+
+  <!--新增饭店业务员信息-->
+  <insert id="addFandianUser" parameterType="com.snacks.fandianUser.model.FandianUser" >
+    INSERT INTO fandian_user
+      (
+      resource_id
+      <if test="userId != null">
+      ,user_id
+      </if>
+      <if test="fandianId != null">
+      ,fandian_id
+      </if>
+      <if test="state != null">
+      ,state
+      </if>
+      <if test="recallDate != null">
+      ,recall_date
+      </if>
+      <if test="beizhu != null">
+      ,beizhu
+      </if>
+      <if test="lastDate != null">
+      ,last_date
+      </if>
+      <if test="wechat != null">
+      ,wechat
+      </if>
+      )
+      VALUE (
+      #{resourceId, jdbcType=VARCHAR}
+      <if test="userId != null">
+      ,#{userId, jdbcType=VARCHAR}
+      </if>
+      <if test="fandianId != null">
+      ,#{fandianId, jdbcType=VARCHAR}
+      </if>
+      <if test="state != null">
+      ,#{state, jdbcType=VARCHAR}
+      </if>
+      <if test="recallDate != null">
+      ,#{recallDate, jdbcType=VARCHAR}
+      </if>
+      <if test="beizhu != null">
+      ,#{beizhu, jdbcType=VARCHAR}
+      </if>
+      <if test="lastDate != null">
+      ,#{lastDate, jdbcType=VARCHAR}
+      </if>
+      <if test="wechat != null">
+      ,#{wechat, jdbcType=VARCHAR}
+      </if>
+      )
+  </insert>
 </mapper>

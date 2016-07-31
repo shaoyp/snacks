@@ -13,13 +13,15 @@ $(function () {
     if(pt != "") {
         box.js.load(pt);
     }
+
 });
 box.js = {};
 box.js.menucheck = function(menupath,pid,cid,obj){
-    // $('.sidebar_li_02').removeClass("active");
-    // $(obj).addClass("active");
     setHash('pt='+menupath);
 }
 box.js.load = function (to) {
     $('#content').load(to);
+    var mo = to.split("/");
+    $.getScript("/snacks/com/snacks/"+mo[2]+"/js/"+mo[2]+".js");
+
 }

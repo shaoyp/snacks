@@ -61,7 +61,7 @@
 <!--sidebar-menu-->
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
-    <li class="active"><a href="javascript:void(0);" onclick="box.js.menucheck('customerList_show.action','','','');"><i class="icon icon-th"></i> <span>潜在客户列表</span></a> </li>
+    <li class="active"><a href="javascript:void(0);" onclick="box.js.menucheck('/snacks/customerList/customerList_show.action','','','');"><i class="icon icon-th"></i> <span>潜在客户列表</span></a> </li>
     <li> <a href="charts.html"><i class="icon icon-signal"></i> <span>数据整理</span></a> </li>
 
   </ul>

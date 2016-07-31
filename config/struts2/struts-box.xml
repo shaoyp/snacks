@@ -7,11 +7,11 @@
 		   	<result name="show">/com/snacks/box/jsp/box.jsp</result>
 	   	</action>
 
-		<action name="customerList_*" class="customerListAction" method="{1}">
-			<result name="show">/com/snacks/customerList/jsp/customerList.jsp</result>
-			<result name="getList" type="json"></result>
-
-		</action>
+		<!--<action name="customerList_*" class="customerListAction" method="{1}">-->
+			<!--<result name="show">/com/snacks/customerList/jsp/customerList.jsp</result>-->
+			<!--<result name="getList" type="json"></result>-->
+			<!--<result name="operFandianUser" type="json"></result>-->
+		<!--</action>-->
 	</package>
 </struts>
 

@@ -1,3 +1,10 @@
+<%--<%@page language="java" import="java.util.*,base.util.CommonUtil" pageEncoding="UTF-8"%>--%>
+<%--<%@page import="org.jasig.cas.client.authentication.AttributePrincipal"%>--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%--<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>--%>
+<%--<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>--%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -60,6 +67,7 @@ String loginName = request.getRemoteUser();
 <%--<script src="<%=path %>/com/snacks/box/js/matrix.tables.js"></script>--%>
 
 <%--<script src="<%=path %>/comm/js/common.js"></script>--%>
+<script src="<%=path %>/com/snacks/plugin/webuploader-0.1.5/webuploader.min.js?"></script>
 
 <script type="text/javascript">
     var path = "<%=path %>";

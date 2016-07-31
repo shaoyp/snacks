@@ -2,6 +2,8 @@ package com.snacks.customerList.service.impl;
 
 import com.snacks.customerList.dao.CustomerListMapper;
 import com.snacks.customerList.service.CustomerListService;
+import com.snacks.fandianUser.model.FandianUser;
+import com.snacks.utils.UtilTools;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,5 +22,18 @@ public class CustomerListServiceImpl implements CustomerListService {
     public List<Map<String, Object>> getCustomerList(){
         System.out.println("--------------2222");
         return customerListMapper.getCustomerList();
+    }
+
+    /**
+     * 保存或修改饭店与业务员关系
+     * @param fandianUser
+     */
+    public void operFandianUser(FandianUser fandianUser){
+        if(null == fandianUser.getResourceId()){
+            fandianUser.setResourceId(UtilTools.getSequence(null));
+            customerListMapper.addFandianUser(fandianUser);
+        }else {
+            customerListMapper.updateFandianUser(fandianUser);
+        }
     }
 }
