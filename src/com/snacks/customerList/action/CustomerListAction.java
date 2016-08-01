@@ -3,10 +3,13 @@ package com.snacks.customerList.action;
 
 import com.snacks.common.action.BaseAction;
 import com.snacks.customerList.service.CustomerListService;
+import com.snacks.fandian.model.Fandian;
+import com.snacks.fandianUser.model.FandianUser;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,30 +20,23 @@ public class CustomerListAction extends BaseAction{
 	
 	final Logger logger = Logger.getLogger(CustomerListAction.class);
 
-
-
 	private List<Map<String, Object>> fandianList;
 
-	private String name = "";
+	private int count = 0;
 
-	private String username = "";
+	private int page = 1;
+
+	private FandianUser fandianUser;
 
 	@Autowired
 	CustomerListService customerListService;
-	
-	public String show(){
-		System.out.println("------------customerListAction show------------");
-//		List<Map<String ,Object>> list = customerListService.getCustomerList();
 
-//		for(int i=0;i<list.size();i++){
-//			list.get(i);
-//		}
-		username = "shaoyp";
-//
-//		for(Map<String, Object> m:list){
-//			System.out.println(m.get("resource_id"));
-//		}
-		
+	/**
+	 * 页面展示
+	 * @return
+     */
+	public String show(){
+
 		return "show";
 	}
 
@@ -52,20 +48,55 @@ public class CustomerListAction extends BaseAction{
 		return fandianList;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+	/**
+	 * 获取客户数据
+	 * @return
+     */
+	public String getList(){
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("start",page*10-10);
+
+		fandianList = customerListService.getCustomerList(map);
+		count = customerListService.getCustomerListCount();
+		return "getList";
 	}
 
-	public String getName() {
-		return name;
+	/**
+	 * 更新饭店业务员信息
+	 * @return
+     */
+	public String operFandianUser(){
+
+		customerListService.operFandianUser(fandianUser);
+
+		return "operFandianUser";
+
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setFandianUser(FandianUser fandianUser) {
+		this.fandianUser = fandianUser;
 	}
 
-	public String getUsername() {
-		return username;
+	public FandianUser getFandianUser() {
+		return fandianUser;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getPage() {
+		return page;
 	}
 }
 

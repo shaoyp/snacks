@@ -24,7 +24,6 @@ function getParameter(hash,name,nvl) {
     }
 }
 
-
 comm.BASE64={
     /**
      * 此变量为编码的key，每个字符的下标相对应于它所代表的编码。
