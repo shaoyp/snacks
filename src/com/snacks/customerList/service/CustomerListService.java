@@ -10,7 +10,8 @@ import java.util.Map;
  */
 public interface CustomerListService {
 
-    List<Map<String, Object>> getCustomerList();
+    List<Map<String, Object>> getCustomerList(Map<String, Object> map);
+    int getCustomerListCount();
 
     /**
      * 更新饭店业务员信息

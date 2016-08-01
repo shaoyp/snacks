@@ -22,7 +22,7 @@
 
     <div class="row-fluid">
         <div class="span12">
-            <div class="widget-box">
+            <div class="widget-box" style="margin-bottom: 0px;">
                 <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
                     <h5>客户信息</h5>
                 </div>
@@ -71,12 +71,12 @@
                                                     <option value="5">特别需要</option>
                                                     <option value="6">客户</option>
                                                 </select>
-                                                <input type="text" data-date="2013-02-01" fid="{{record.resource_id}}" fuid="{{record.fuid}}" data-date-format="yyyy-mm-dd" value="" onchange="customerList.js.state(this,'{{record.resource_id}}')" placeholder="预约时间" class="datepicker span4">
+                                                <input type="text" name="recall_date_input" data-date="2013-02-01" fid="{{record.resource_id}}" fuid="{{record.fuid}}" data-date-format="yyyy-mm-dd" value="" onchange="customerList.js.state(this,'{{record.resource_id}}')" placeholder="预约时间" class="datepicker span4">
                                                 <input type="text" placeholder="微信号" fid="{{record.resource_id}}" fuid="{{record.fuid}}" class="span4" name="wechat_input">
                                         </div>
                                         <div class="controls controls-row">
                                             <div class="m-wrap">
-                                            <input type="text" placeholder="备注" class="span12" style="margin-bottom: 0px;">
+                                            <input type="text" name="beizhu_input" fid="{{record.resource_id}}" fuid="{{record.fuid}}" placeholder="备注" class="span12" style="margin-bottom: 0px;">
                                                 </div>
                                         </div>
                                     </div>
@@ -85,10 +85,26 @@
                             </li>
                             {{/each}}
                         </script>
+
                     </ul>
+
+                    <%--<div class="dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers" id="DataTables_Table_0_paginate">--%>
+                <%--<a class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default ui-state-disabled" tabindex="0" id="DataTables_Table_0_first">First</a>--%>
+                <%--<a class="previous fg-button ui-button ui-state-default ui-state-disabled" tabindex="0" id="DataTables_Table_0_previous">Previous</a>--%>
+                <%--<span>--%>
+                <%--<a class="fg-button ui-button ui-state-default ui-state-disabled" tabindex="0">1</a>--%>
+                <%--<a class="fg-button ui-button ui-state-default" tabindex="0">2</a>--%>
+                <%--<a class="fg-button ui-button ui-state-default" tabindex="0">3</a>--%>
+                <%--<a class="fg-button ui-button ui-state-default" tabindex="0">4</a>--%>
+                <%--<a class="fg-button ui-button ui-state-default" tabindex="0">5</a>--%>
+                <%--</span>--%>
+                <%--<a class="next fg-button ui-button ui-state-default" tabindex="0" id="DataTables_Table_0_next">Next</a>--%>
+                <%--<a class="last ui-corner-tr ui-corner-br fg-button ui-button ui-state-default" tabindex="0" id="DataTables_Table_0_last">Last</a>--%>
+                <%--</div>--%>
 
                 </div>
             </div>
+            <div id="callBackPager"></div>
 
         </div>
     </div>

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +22,9 @@ public class CustomerListAction extends BaseAction{
 
 	private List<Map<String, Object>> fandianList;
 
-	private String username = "";
+	private int count = 0;
+
+	private int page = 1;
 
 	private FandianUser fandianUser;
 
@@ -45,13 +48,6 @@ public class CustomerListAction extends BaseAction{
 		return fandianList;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getUsername() {
-		return username;
-	}
 
 	/**
 	 * 获取客户数据
@@ -59,7 +55,11 @@ public class CustomerListAction extends BaseAction{
      */
 	public String getList(){
 
-		fandianList = customerListService.getCustomerList();
+		Map<String, Object> map = new HashMap<>();
+		map.put("start",page*10-10);
+
+		fandianList = customerListService.getCustomerList(map);
+		count = customerListService.getCustomerListCount();
 		return "getList";
 	}
 
@@ -81,6 +81,22 @@ public class CustomerListAction extends BaseAction{
 
 	public FandianUser getFandianUser() {
 		return fandianUser;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getPage() {
+		return page;
 	}
 }
 

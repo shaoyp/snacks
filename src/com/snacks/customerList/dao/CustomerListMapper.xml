@@ -5,20 +5,42 @@
   <sql id="Base_Column_List" >
     resource_id, title, address, phone
   </sql>
-  <select id="getCustomerList" resultType="java.util.Map" >
-    select 
-    f.resource_id,f.title,f.address,f.phone,fu.resource_id fuid,fu.state fustate,date_format(fu.last_date,'%Y-%m-%d') last_date,fu.wechat
+  <select id="getCustomerList" resultType="java.util.Map" parameterType="java.util.Map">
+    SELECT
+      f.resource_id,
+      f.title,
+      f.address,
+      f.phone,
+      fu.resource_id fuid,
+      fu.state fustate,
+      date_format(fu.last_date,'%Y-%m-%d') last_date,
+      fu.wechat
+    FROM fandian f left OUTER JOIN fandian_user fu on f.resource_id = fu.fandian_id limit #{start},10
+  </select>
+
+  <select id="getCustomerListCount" resultType="int" >
+    SELECT count(*)
     FROM fandian f left OUTER JOIN fandian_user fu on f.resource_id = fu.fandian_id
+    WHERE fu.resource_id is NULL or fu.recall_date = date_format(NOW(),'%Y-%m-%d')
   </select>
 
   <!--修改状态-->
   <update id="updateFandianUser" parameterType="com.snacks.fandianUser.model.FandianUser">
     UPDATE fandian_user
-       SET state = #{state, jdbcType=VARCHAR},
-           recall_date = #{recallDate, jdbcType=VARCHAR},
-           beizhu = #{beizhu, jdbcType=VARCHAR},
-           wechat = #{wechat, jdbcType=VARCHAR},
-           last_date = now()
+       SET
+          <if test="state != null">
+           state = #{state, jdbcType=VARCHAR}
+          </if>
+          <if test="recallDate != null">
+           ,recall_date = #{recallDate, jdbcType=VARCHAR}
+          </if>
+          <if test="beizhu != null">
+           ,beizhu = #{beizhu, jdbcType=VARCHAR}
+          </if>
+          <if test="wechat != null">
+           ,wechat = #{wechat, jdbcType=VARCHAR}
+          </if>
+           ,last_date = now()
      WHERE resource_id = #{resourceId, jdbcType=VARCHAR}
   </update>
 

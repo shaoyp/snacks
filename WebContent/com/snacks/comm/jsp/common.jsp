@@ -48,6 +48,7 @@ String loginName = request.getRemoteUser();
 <script src="<%=path %>/com/snacks/box/js/wysihtml5-0.3.0.js"></script>
 <script src="<%=path %>/com/snacks/box/js/jquery.peity.min.js"></script>
 <script src="<%=path %>/com/snacks/box/js/bootstrap-wysihtml5.js"></script>
+<script src="<%=path %>/com/snacks/plugin/bootStrapPager/js/extendPagination.js"></script>
 <%--<script src="<%=path %>/com/snacks/box/js/jquery.flot.min.js"></script>--%>
 <%--<script src="<%=path %>/com/snacks/box/js/jquery.flot.resize.min.js"></script>--%>
 <%--<script src="<%=path %>/com/snacks/box/js/jquery.peity.min.js"></script>--%>

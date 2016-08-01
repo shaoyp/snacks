@@ -14,7 +14,8 @@ public interface CustomerListMapper {
      * 获取客户列表数据
      * @return
      */
-    List<Map<String, Object>> getCustomerList();
+    List<Map<String, Object>> getCustomerList(Map<String, Object> map);
+    int getCustomerListCount();
 
     /**
      * 修改饭店业务员信息
