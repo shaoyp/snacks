@@ -88,7 +88,7 @@
     </div>
 
 </div>
-<s:property value="username">
+<s:property value="username"/>
 
 <script src="<%=request.getContextPath()%>/com/snacks/customerList/js/customerList.js"></script>
 </body>

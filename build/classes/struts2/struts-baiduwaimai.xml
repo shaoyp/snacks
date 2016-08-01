@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="baiduwaimai" extends="common" namespace="/baiduwaimai">
+	   <action name="baiduwaimai_*" class="baiduwaimaiAction" method="{1}">
+	       <result name="show">/jsp/baiduwaimai/baiduwaimaiList.jsp</result>
+	       <result name="detail">/jsp/baiduwaimai/baiduwaimaiDetail.jsp</result>
+		   <result name="add" type="json"></result>
+		   <result name="update" type="json"></result>
+		   <result name="del" type="json"></result>
+	   </action>
+	</package>
+</struts>
+

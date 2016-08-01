@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="app" extends="common" namespace="/app">
+	   <action name="app_*" class="appAction" method="{1}">
+	       <result name="login" type="json"></result>
+	       <result name="search" type="json"></result>
+	       <result name="updatestate" type="json"></result>
+		   <result name="info" type="json"></result>
+	       <result name="setting" type="json"></result>
+	       <result name="caipinList" type="json"></result>
+	   </action>
+	</package>
+</struts>
+
