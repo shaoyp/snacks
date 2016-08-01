@@ -1,19 +1,99 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.snacks.customerList.dao.CustomerListMapper" >
-  <resultMap id="BaseResultMap" type="com.snacks.customerList.model.Fandian" >
-    <id column="resource_id" property="resource_id" jdbcType="VARCHAR" />
-    <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
-    <result column="phone" property="phone" jdbcType="VARCHAR" />
-  </resultMap>
+
   <sql id="Base_Column_List" >
     resource_id, title, address, phone
   </sql>
-  <select id="getCustomerList" resultMap="BaseResultMap" >
-    select 
-    <include refid="Base_Column_List" />
-    from fandian
+  <select id="getCustomerList" resultType="java.util.Map" parameterType="java.util.Map">
+    SELECT
+      f.resource_id,
+      f.title,
+      f.address,
+      f.phone,
+      fu.resource_id fuid,
+      fu.state fustate,
+      date_format(fu.last_date,'%Y-%m-%d') last_date,
+      fu.wechat
+    FROM fandian f left OUTER JOIN fandian_user fu on f.resource_id = fu.fandian_id limit #{start},10
   </select>
 
+  <select id="getCustomerListCount" resultType="int" >
+    SELECT count(*)
+    FROM fandian f left OUTER JOIN fandian_user fu on f.resource_id = fu.fandian_id
+    WHERE fu.resource_id is NULL or fu.recall_date = date_format(NOW(),'%Y-%m-%d')
+  </select>
+
+  <!--修改状态-->
+  <update id="updateFandianUser" parameterType="com.snacks.fandianUser.model.FandianUser">
+    UPDATE fandian_user
+       SET
+          <if test="state != null">
+           state = #{state, jdbcType=VARCHAR}
+          </if>
+          <if test="recallDate != null">
+           ,recall_date = #{recallDate, jdbcType=VARCHAR}
+          </if>
+          <if test="beizhu != null">
+           ,beizhu = #{beizhu, jdbcType=VARCHAR}
+          </if>
+          <if test="wechat != null">
+           ,wechat = #{wechat, jdbcType=VARCHAR}
+          </if>
+           ,last_date = now()
+     WHERE resource_id = #{resourceId, jdbcType=VARCHAR}
+  </update>
+
+  <!--新增饭店业务员信息-->
+  <insert id="addFandianUser" parameterType="com.snacks.fandianUser.model.FandianUser" >
+    INSERT INTO fandian_user
+      (
+      resource_id
+      <if test="userId != null">
+      ,user_id
+      </if>
+      <if test="fandianId != null">
+      ,fandian_id
+      </if>
+      <if test="state != null">
+      ,state
+      </if>
+      <if test="recallDate != null">
+      ,recall_date
+      </if>
+      <if test="beizhu != null">
+      ,beizhu
+      </if>
+      <if test="lastDate != null">
+      ,last_date
+      </if>
+      <if test="wechat != null">
+      ,wechat
+      </if>
+      )
+      VALUE (
+      #{resourceId, jdbcType=VARCHAR}
+      <if test="userId != null">
+      ,#{userId, jdbcType=VARCHAR}
+      </if>
+      <if test="fandianId != null">
+      ,#{fandianId, jdbcType=VARCHAR}
+      </if>
+      <if test="state != null">
+      ,#{state, jdbcType=VARCHAR}
+      </if>
+      <if test="recallDate != null">
+      ,#{recallDate, jdbcType=VARCHAR}
+      </if>
+      <if test="beizhu != null">
+      ,#{beizhu, jdbcType=VARCHAR}
+      </if>
+      <if test="lastDate != null">
+      ,now()
+      </if>
+      <if test="wechat != null">
+      ,#{wechat, jdbcType=VARCHAR}
+      </if>
+      )
+  </insert>
 </mapper>
