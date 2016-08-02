@@ -14,8 +14,11 @@
       fu.resource_id fuid,
       fu.state fustate,
       date_format(fu.last_date,'%Y-%m-%d') last_date,
-      fu.wechat
-    FROM fandian f left OUTER JOIN fandian_user fu on f.resource_id = fu.fandian_id limit #{start},10
+      date_format(fu.recall_date,'%Y-%m-%d') recall_date,
+      fu.wechat,
+      fu.beizhu
+
+    FROM fandian f left OUTER JOIN fandian_user fu on f.resource_id = fu.fandian_id ORDER BY f.resource_id limit #{start},10
   </select>
 
   <select id="getCustomerListCount" resultType="int" >
@@ -27,9 +30,9 @@
   <!--修改状态-->
   <update id="updateFandianUser" parameterType="com.snacks.fandianUser.model.FandianUser">
     UPDATE fandian_user
-       SET
+       SET last_date = now()
           <if test="state != null">
-           state = #{state, jdbcType=VARCHAR}
+           ,state = #{state, jdbcType=VARCHAR}
           </if>
           <if test="recallDate != null">
            ,recall_date = #{recallDate, jdbcType=VARCHAR}
@@ -40,7 +43,7 @@
           <if test="wechat != null">
            ,wechat = #{wechat, jdbcType=VARCHAR}
           </if>
-           ,last_date = now()
+
      WHERE resource_id = #{resourceId, jdbcType=VARCHAR}
   </update>
 

@@ -35,13 +35,15 @@
                             <div class="row-fluid"  style="margin-top:0px;">
 
                                 <div class="span7">
-                                    <div class="user-thumb"> <img width="40" height="40" src="img/demo/av1.jpg" alt="User"> </div>
+                                    <div class="user-thumb"> <img width="40" height="40" src="" alt=""> </div>
                                     <div class="article-post"> <span class="user-info"><h5>{{record.title}}</h5></span>
                                         <p>电话:<a href="#">{{record.phone}}</a>&nbsp;&nbsp;&nbsp;地址:{{record.address}} </p>
                                     </div>
                                 </div>
                                 <div class="span1 buttonArea">
-                                    <div class="article-post"> <span class="user-info">
+                                    <div class="article-post">
+                                        <p style="margin-bottom: 6px;">{{record.last_date}}</p>
+                                        <span class="user-info">
                                             {{if record.fustate == 1}}
                                             <h6>不需要</h6>
                                             {{else if record.fustate == 2}}
@@ -56,7 +58,6 @@
                                             <h6>客户</h6>
                                             {{/if}}
                                         </span>
-                                        <p style="margin-bottom: 6px;">{{record.last_date}}</p>
                                     </div>
                                 </div>
                                 <div class="span4 buttonArea row-fluid">
@@ -71,12 +72,12 @@
                                             <option value="5">特别需要</option>
                                             <option value="6">客户</option>
                                         </select>
-                                        <input type="text" name="recall_date_input" data-date="2013-02-01" fid="{{record.resource_id}}" fuid="{{record.fuid}}" data-date-format="yyyy-mm-dd" value="" onchange="customerList.js.state(this,'{{record.resource_id}}')" placeholder="预约时间" class="datepicker span4">
-                                        <input type="text" placeholder="微信号" fid="{{record.resource_id}}" fuid="{{record.fuid}}" class="span4" name="wechat_input">
+                                        <input type="text" name="recall_date_input" data-date="2013-02-01" fid="{{record.resource_id}}" fuid="{{record.fuid}}" data-date-format="yyyy-mm-dd" value="{{record.recall_date}}" onchange="customerList.js.state(this,'{{record.resource_id}}')" placeholder="预约时间" class="datepicker span4">
+                                        <input type="text" placeholder="微信号" fid="{{record.resource_id}}" fuid="{{record.fuid}}" class="span4" name="wechat_input" value="{{record.wechat}}">
                                     </div>
                                     <div class="controls controls-row">
                                         <div class="m-wrap">
-                                            <input type="text" name="beizhu_input" fid="{{record.resource_id}}" fuid="{{record.fuid}}" placeholder="备注" class="span12" style="margin-bottom: 0px;">
+                                            <input type="text" name="beizhu_input" fid="{{record.resource_id}}" fuid="{{record.fuid}}" placeholder="备注" class="span12" style="margin-bottom: 0px;" value="{{record.beizhu}}">
                                         </div>
                                     </div>
                                 </div>
@@ -87,20 +88,6 @@
                         </script>
 
                     </ul>
-
-                    <%--<div class="dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers" id="DataTables_Table_0_paginate">--%>
-                    <%--<a class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default ui-state-disabled" tabindex="0" id="DataTables_Table_0_first">First</a>--%>
-                    <%--<a class="previous fg-button ui-button ui-state-default ui-state-disabled" tabindex="0" id="DataTables_Table_0_previous">Previous</a>--%>
-                    <%--<span>--%>
-                    <%--<a class="fg-button ui-button ui-state-default ui-state-disabled" tabindex="0">1</a>--%>
-                    <%--<a class="fg-button ui-button ui-state-default" tabindex="0">2</a>--%>
-                    <%--<a class="fg-button ui-button ui-state-default" tabindex="0">3</a>--%>
-                    <%--<a class="fg-button ui-button ui-state-default" tabindex="0">4</a>--%>
-                    <%--<a class="fg-button ui-button ui-state-default" tabindex="0">5</a>--%>
-                    <%--</span>--%>
-                    <%--<a class="next fg-button ui-button ui-state-default" tabindex="0" id="DataTables_Table_0_next">Next</a>--%>
-                    <%--<a class="last ui-corner-tr ui-corner-br fg-button ui-button ui-state-default" tabindex="0" id="DataTables_Table_0_last">Last</a>--%>
-                    <%--</div>--%>
 
                 </div>
             </div>

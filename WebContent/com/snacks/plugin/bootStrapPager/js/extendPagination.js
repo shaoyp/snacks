@@ -8,6 +8,7 @@
             totalCount: '',
             showPage: '10',
             limit: '5',
+            curr:1,
             callback: function () {
                 return false;
             }
@@ -37,12 +38,12 @@
             html.push('<li class="disabled hidden"><a href="#">...</a></li>');
             if (totalPage <= showPage) {
                 for (var i = 1; i <= totalPage; i++) {
-                    if (i == 1) html.push(' <li class="active"><a href="#">' + i + '</a></li>');
+                    if (i == defaults.curr) html.push(' <li class="active"><a href="#">' + i + '</a></li>');
                     else html.push(' <li><a href="#">' + i + '</a></li>');
                 }
             } else {
                 for (var j = 1; j <= showPage; j++) {
-                    if (j == 1) html.push(' <li class="active"><a href="#">' + j + '</a></li>');
+                    if (j == defaults.curr) html.push(' <li class="active"><a href="#">' + j + '</a></li>');
                     else html.push(' <li><a href="#">' + j + '</a></li>');
                 }
             }
