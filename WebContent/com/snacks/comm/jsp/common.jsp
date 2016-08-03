@@ -72,6 +72,7 @@ String loginName = request.getRemoteUser();
 
 <script type="text/javascript">
     var path = "<%=path %>";
+    var basePath = "<%=basePath %>";
 
     jQuery.namespace = function(){
         var a=arguments, o=null, i, j, d, rt;

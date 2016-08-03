@@ -11,12 +11,13 @@
     <result column="sales" property="sales" jdbcType="VARCHAR" />
     <result column="get_time" property="getTime" jdbcType="TIMESTAMP" />
     <result column="areaid" property="areaid" jdbcType="VARCHAR" />
+    <result column="flg" property="flg" jdbcType="CHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.snacks.elemewaimai.model.Elemewaimai" extends="BaseResultMap" >
     <result column="caipin" property="caipin" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    resource_id, title, url, address, phone, evaluate, sales, get_time, areaid
+    resource_id, title, url, address, phone, evaluate, sales, get_time, areaid, flg
   </sql>
   <sql id="Blob_Column_List" >
     caipin
@@ -37,11 +38,11 @@
     insert into elemewaimai (resource_id, title, url, 
       address, phone, evaluate, 
       sales, get_time, areaid, 
-      caipin)
+      flg, caipin)
     values (#{resourceId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{evaluate,jdbcType=VARCHAR}, 
       #{sales,jdbcType=VARCHAR}, #{getTime,jdbcType=TIMESTAMP}, #{areaid,jdbcType=VARCHAR}, 
-      #{caipin,jdbcType=LONGVARCHAR})
+      #{flg,jdbcType=CHAR}, #{caipin,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.snacks.elemewaimai.model.Elemewaimai" >
     insert into elemewaimai
@@ -72,6 +73,9 @@
       </if>
       <if test="areaid != null" >
         areaid,
+      </if>
+      <if test="flg != null" >
+        flg,
       </if>
       <if test="caipin != null" >
         caipin,
@@ -105,6 +109,9 @@
       <if test="areaid != null" >
         #{areaid,jdbcType=VARCHAR},
       </if>
+      <if test="flg != null" >
+        #{flg,jdbcType=CHAR},
+      </if>
       <if test="caipin != null" >
         #{caipin,jdbcType=LONGVARCHAR},
       </if>
@@ -137,6 +144,9 @@
       <if test="areaid != null" >
         areaid = #{areaid,jdbcType=VARCHAR},
       </if>
+      <if test="flg != null" >
+        flg = #{flg,jdbcType=CHAR},
+      </if>
       <if test="caipin != null" >
         caipin = #{caipin,jdbcType=LONGVARCHAR},
       </if>
@@ -153,6 +163,7 @@
       sales = #{sales,jdbcType=VARCHAR},
       get_time = #{getTime,jdbcType=TIMESTAMP},
       areaid = #{areaid,jdbcType=VARCHAR},
+      flg = #{flg,jdbcType=CHAR},
       caipin = #{caipin,jdbcType=LONGVARCHAR}
     where resource_id = #{resourceId,jdbcType=VARCHAR}
   </update>
@@ -165,7 +176,8 @@
       evaluate = #{evaluate,jdbcType=VARCHAR},
       sales = #{sales,jdbcType=VARCHAR},
       get_time = #{getTime,jdbcType=TIMESTAMP},
-      areaid = #{areaid,jdbcType=VARCHAR}
+      areaid = #{areaid,jdbcType=VARCHAR},
+      flg = #{flg,jdbcType=CHAR}
     where resource_id = #{resourceId,jdbcType=VARCHAR}
   </update>
 </mapper>

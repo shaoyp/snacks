@@ -22,11 +22,12 @@
     <result column="baidusales" property="baidusales" jdbcType="INTEGER" />
     <result column="meituansales" property="meituansales" jdbcType="INTEGER" />
     <result column="elemesales" property="elemesales" jdbcType="INTEGER" />
+    <result column="flg" property="flg" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     resource_id, title, url, address, phone, meituanvaluate, elemevaluate, baiduevaluate, 
     sales, get_time, province, city, lng, lat, baidu, meituan, eleme, baidusales, meituansales, 
-    elemesales
+    elemesales, flg
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -45,14 +46,14 @@
       get_time, province, city, 
       lng, lat, baidu, meituan, 
       eleme, baidusales, meituansales, 
-      elemesales)
+      elemesales, flg)
     values (#{resourceId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{meituanvaluate,jdbcType=VARCHAR}, 
       #{elemevaluate,jdbcType=VARCHAR}, #{baiduevaluate,jdbcType=VARCHAR}, #{sales,jdbcType=VARCHAR}, 
       #{getTime,jdbcType=TIMESTAMP}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{baidu,jdbcType=VARCHAR}, #{meituan,jdbcType=VARCHAR}, 
       #{eleme,jdbcType=VARCHAR}, #{baidusales,jdbcType=INTEGER}, #{meituansales,jdbcType=INTEGER}, 
-      #{elemesales,jdbcType=INTEGER})
+      #{elemesales,jdbcType=INTEGER}, #{flg,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.snacks.fandiandata.model.Fandiandata" >
     insert into fandiandata
@@ -117,6 +118,9 @@
       <if test="elemesales != null" >
         elemesales,
       </if>
+      <if test="flg != null" >
+        flg,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="resourceId != null" >
@@ -178,6 +182,9 @@
       </if>
       <if test="elemesales != null" >
         #{elemesales,jdbcType=INTEGER},
+      </if>
+      <if test="flg != null" >
+        #{flg,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -241,6 +248,9 @@
       <if test="elemesales != null" >
         elemesales = #{elemesales,jdbcType=INTEGER},
       </if>
+      <if test="flg != null" >
+        flg = #{flg,jdbcType=CHAR},
+      </if>
     </set>
     where resource_id = #{resourceId,jdbcType=VARCHAR}
   </update>
@@ -264,7 +274,8 @@
       eleme = #{eleme,jdbcType=VARCHAR},
       baidusales = #{baidusales,jdbcType=INTEGER},
       meituansales = #{meituansales,jdbcType=INTEGER},
-      elemesales = #{elemesales,jdbcType=INTEGER}
+      elemesales = #{elemesales,jdbcType=INTEGER},
+      flg = #{flg,jdbcType=CHAR}
     where resource_id = #{resourceId,jdbcType=VARCHAR}
   </update>
 </mapper>

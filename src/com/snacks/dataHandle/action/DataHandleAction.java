@@ -33,6 +33,11 @@ public class DataHandleAction extends BaseAction{
 		return "show";
 	}
 	
+	public String merge(){
+		logger.info("-------------------------dataHandleAction merge--------------------------");
+		return "merge";
+	}
+	
 
 	
 	

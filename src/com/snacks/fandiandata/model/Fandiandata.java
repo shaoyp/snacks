@@ -43,6 +43,8 @@ public class Fandiandata {
 
     private Integer elemesales;
 
+    private String flg;
+
     public String getResourceId() {
         return resourceId;
     }
@@ -201,5 +203,13 @@ public class Fandiandata {
 
     public void setElemesales(Integer elemesales) {
         this.elemesales = elemesales;
+    }
+
+    public String getFlg() {
+        return flg;
+    }
+
+    public void setFlg(String flg) {
+        this.flg = flg == null ? null : flg.trim();
     }
 }

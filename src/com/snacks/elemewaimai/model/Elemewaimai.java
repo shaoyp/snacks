@@ -21,6 +21,8 @@ public class Elemewaimai {
 
     private String areaid;
 
+    private String flg;
+
     private String caipin;
 
     public String getResourceId() {
@@ -93,6 +95,14 @@ public class Elemewaimai {
 
     public void setAreaid(String areaid) {
         this.areaid = areaid == null ? null : areaid.trim();
+    }
+
+    public String getFlg() {
+        return flg;
+    }
+
+    public void setFlg(String flg) {
+        this.flg = flg == null ? null : flg.trim();
     }
 
     public String getCaipin() {

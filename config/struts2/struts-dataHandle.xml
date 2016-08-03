@@ -5,6 +5,7 @@
 	<package name="dataHandle" extends="common" namespace="/dataHandle">
 		<action name="dataHandle_*" class="dataHandleAction" method="{1}">
 			<result name="show">/com/snacks/dataHandle/jsp/dataHandle.jsp</result>
+			<result name="merge" type="json"></result>
 		</action>
 	</package>
 </struts>
