@@ -5,12 +5,12 @@ $.namespace("comm");
 
 function setHash(hash) {
     // window.location.hash = comm.BASE64.encode(encodeURIComponent(hash));
-    window.location.hash = encodeURIComponent(hash);
+    window.location.hash = hash;
 }
 //截取参数方法，hash：截取的字符串，name：截取的参数名，nvl：该参数不存在时的返回值
 function getParameter(hash,name,nvl) {
     // hash = decodeURIComponent(comm.BASE64.decode(hash));
-    hash = decodeURIComponent(hash);
+    hash = hash;
     if(!nvl){
         nvl = "";
     }

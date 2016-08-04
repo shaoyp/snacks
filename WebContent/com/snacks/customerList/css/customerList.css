@@ -43,3 +43,7 @@
     background: rgba(255, 220, 153, 0.94) !important;
 
 }
+
+.no_margin [class*="span"]{
+    margin-left:0px;
+}

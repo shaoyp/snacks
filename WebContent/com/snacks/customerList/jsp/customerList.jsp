@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@taglib uri="/struts-tags" prefix="s" %>
-
 <div id="content-header">
     <div id="breadcrumb"> <span class="tip-bottom"><i class="glyphicon glyphicon-zoom-in"></i>&nbsp;</span></div>
 </div>
@@ -13,9 +11,67 @@
         <div class="span12">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-list"></i> </span>
-                    <h5>搜索项<s:property value="username" /> </h5>
+                    <h5>搜索项</h5>
                 </div>
-                <div class="widget-content"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
+                <div class="widget-content">
+                    <div class="fr" style="margin-top: -15px;">
+                        <a class="btn btn-primary " href="#"  onclick="customerList.js.query()"><i class="icon-search" style="margin-right: 5px;"></i>搜索</a>
+                        <a class="btn btn-success" href="#" id="more_button" value="0" onclick="customerList.js.more(this)">更多</a>
+                        <a class="btn btn-danger" href="#" onclick="customerList.js.clearQueryData()">清空</a>
+                    </div>
+                    <form class="form-horizontal">
+
+                        <div class="row-fluid no_margin" id="query_box">
+                            <div class="control-group span4">
+                                <label class="control-label">饭店 :</label>
+                                <div class="controls">
+                                    <input id="query_fandian" type="text" placeholder="" class="span11">
+                                </div>
+                            </div>
+                            <div class="control-group span4">
+                                <label class="control-label">电话 :</label>
+                                <div class="controls">
+                                    <input id="query_phone" type="text" placeholder="" class="span11">
+                                </div>
+                            </div>
+                            <div class="control-group span4">
+                                <label class="control-label">销量 :</label>
+                                <div class="controls">
+                                    <input id="query_sales_min" type="text" placeholder="最小值" class="span5">
+                                    &nbsp;~&nbsp;&nbsp;
+                                    <input id="query_sales_max" type="text" placeholder="最大值" class="span5">
+                                </div>
+                            </div>
+                            <div class="control-group span4">
+                                <label class="control-label">位置 :</label>
+                                <div class="controls">
+                                    <input id="query_location" type="text" placeholder="" class="span11">
+                                </div>
+                            </div>
+                            <div class="control-group span4">
+                                <label class="control-label">地区 :</label>
+                                <div class="controls">
+                                    <select id="query_area" type="text" placeholder="" class="span11">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group span4 hidden" name="more_div">
+                                <label class="control-label">菜品 :</label>
+                                <div class="controls">
+                                    <input id="query_caipin" type="text" placeholder="" class="span11">
+                                </div>
+                            </div>
+                            <div class="control-group span4 hidden" name="more_div">
+                                <label class="control-label">价格 :</label>
+                                <div class="controls">
+                                    <input id="query_prince_min" type="text" placeholder="最小值" class="span5">
+                                    &nbsp;~&nbsp;&nbsp;
+                                    <input id="query_prince_max" type="text" placeholder="最大值" class="span5">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -30,8 +86,13 @@
 
                     <ul class="recent-posts" id="grid_ul">
                         <script id="grid_template" type="text/html">
+                            {{if result.length == 0}}
+                            <li >
+                                未搜索到符合条件的数据
+                            </li>
+                            {{/if}}
                             {{each result as record i}}
-                            <li {{if record.fuid != null }}class="called"{{/if}}>
+                            <li {{if record.fuid != null }} class="called" {{/if}} >
                             <div class="row-fluid"  style="margin-top:0px;">
 
                                 <div class="span7">

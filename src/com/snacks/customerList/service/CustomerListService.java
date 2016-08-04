@@ -11,11 +11,17 @@ import java.util.Map;
 public interface CustomerListService {
 
     List<Map<String, Object>> getCustomerList(Map<String, Object> map);
-    int getCustomerListCount();
+    int getCustomerListCount(Map<String, Object> map);
 
     /**
      * 更新饭店业务员信息
      * @param fandianUser
      */
     void operFandianUser(FandianUser fandianUser);
+
+    /**
+     * 获取地区代码
+     * @return
+     */
+    List<Map<String, Object>> getCodeArea();
 }

@@ -24,6 +24,7 @@ String loginName = request.getRemoteUser();
 <link rel="stylesheet" href="<%=path %>/com/snacks/box/css/jquery.gritter.css" />
 <link rel="stylesheet" href="<%=path %>/com/snacks/box/css/datepicker.css" />
 <link rel="stylesheet" href="<%=path %>/com/snacks/box/css/colorpicker.css" />
+<link rel="stylesheet" href="<%=path %>/com/snacks/box/css/select2.css" />
 <%--<script src="<%=path %>/com/snacks/plugin/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>--%>
 <script src="<%=path %>/com/snacks/box/js/jquery.min.js"></script>
 

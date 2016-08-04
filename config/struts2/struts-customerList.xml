@@ -7,6 +7,7 @@
 			<result name="show">/com/snacks/customerList/jsp/customerList.jsp</result>
 			<result name="getList" type="json"></result>
 			<result name="operFandianUser" type="json"></result>
+			<result name="getCodeArea" type="json"></result>
 		</action>
 	</package>
 </struts>
