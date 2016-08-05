@@ -5,12 +5,18 @@ $.namespace("box")
 $(function () {
 
 
-
     var pt = getParameter(location.hash,"pt","");
     if(pt==""){
-        console.info(path+"/customerList/customerList_show.action")
         $('#content').load(path+"/customerList/customerList_show.action");
     }else{
+        $("#sidebar").find("li").removeClass("active");
+        $("#sidebar").find("a").each(function () {
+            var onclick = $(this).attr("onclick");
+            if(onclick != undefined && onclick.indexOf(pt) >0 ) {
+                $(this).parent().addClass("active");
+                return;
+            }
+        });
         $('#content').load(pt);
     }
     $(window).hashchange(function () {
@@ -24,20 +30,11 @@ $(function () {
 box.js = {};
 box.js.menucheck = function(menupath,pid,cid,obj){
     setHash('#pt='+menupath);
-}
+    $("#sidebar").find("li").removeClass("active");
+    $(obj).parent().addClass("active");
+};
 box.js.load = function (to) {
 
-    // $.ajaxSetup ({
-    //     cache: false //关闭AJAX相应的缓存
-    // });
-
-    console.info(to)
     $('#content').load(to);
-    // var mo = to.split("/");
-    // $.getScript("/snacks/com/snacks/"+mo[2]+"/js/"+mo[2]+".js");
-
-    // $.get(to,function(data){
-    //     $("#content").html(data);
-    // });
 
 };

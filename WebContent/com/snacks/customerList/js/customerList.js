@@ -19,6 +19,9 @@ $(function () {
         "param.start":0
     },function (data) {
 
+        // 清理dom节点中之前的日期组件,防止报错
+        $('.datepicker').remove();
+
         var html = template('grid_template',{'result':data.fandianList});
         // 渲染列表
         $('#grid_ul').html(html);
@@ -280,4 +283,23 @@ customerList.js.query = function (){
 
 
     });
+};
+
+customerList.js.openDetail = function (obj) {
+    var index = layer.open({
+        type: 2,
+        title: "添加",
+        closeBtn: 1, //不显示关闭按钮
+        area: ['340px','560px'],
+        shift: 0,
+        maxmin: true,//是否带有全屏按钮
+        content: [path+'/customerList/customerList_show.action','no'], //iframe的url，no代表不显示滚动条
+        success: function(){ //弹出成功打开
+
+        },
+        end: function () { // 弹出层关闭
+
+        }
+    });
+    layer.full(index);
 };
