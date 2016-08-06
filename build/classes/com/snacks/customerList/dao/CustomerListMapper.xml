@@ -5,6 +5,47 @@
   <sql id="Base_Column_List" >
     resource_id, title, address, phone
   </sql>
+  <sql id="wheresql">
+    FROM fandian f left OUTER JOIN fandian_user fu on f.resource_id = fu.fandian_id
+    <if test="(query_caipin != null and query_caipin !='') or (query_prince_min != null and query_prince_min != '') or (query_prince_max != null and query_prince_max != '')">
+    , (SELECT DISTINCT c.fandianid from caipin c
+      WHERE 1=1
+      <if test="query_caipin != null and query_caipin !=''">
+        AND c.caipinming like concat('%',#{query_caipin},'%')
+      </if>
+      <if test="query_prince_min != null and query_prince_min != ''">
+        AND c.prince+0 >= #{query_prince_min}+0
+      </if>
+      <if test="query_prince_max != null and query_prince_max != ''">
+        <![CDATA[
+        AND c.prince+0 <= #{query_prince_max}+0
+        ]]>
+      </if>
+      ) cp
+    </if>
+    WHERE (fu.resource_id is NULL or fu.recall_date = date_format(NOW(),'%Y-%m-%d'))
+    <if test="query_fandian != null and query_fandian != ''">
+      AND f.title like concat('%',#{query_fandian},'%')
+    </if>
+    <if test="query_phone != null and query_phone != ''">
+      AND f.phone = #{query_phone}
+    </if>
+    <if test="query_area != null and query_area != ''">
+      AND f.diqu = #{query_area}
+    </if>
+    <if test="query_sales_min != null and query_sales_min != ''">
+      AND f.totlesales+0 >= #{query_sales_min}+0
+    </if>
+    <if test="query_sales_max != null and query_sales_max != ''">
+      <![CDATA[
+      AND f.totlesales+0 <= #{query_sales_max}+0
+      ]]>
+    </if>
+    <if test="(query_caipin != null and query_caipin !='') or (query_prince_min != null and query_prince_min != '') or (query_prince_max != null and query_prince_max != '')">
+      AND f.resource_id = cp.fandianid
+    </if>
+
+  </sql>
   <select id="getCustomerList" resultType="java.util.Map" parameterType="java.util.Map">
     SELECT
       f.resource_id,
@@ -18,13 +59,14 @@
       fu.wechat,
       fu.beizhu
 
-    FROM fandian f left OUTER JOIN fandian_user fu on f.resource_id = fu.fandian_id ORDER BY f.resource_id limit #{start},10
+
+    <include refid="wheresql" />
+    ORDER BY f.resource_id limit #{start},10
   </select>
 
-  <select id="getCustomerListCount" resultType="int" >
+  <select id="getCustomerListCount" resultType="int" parameterType="java.util.Map">
     SELECT count(*)
-    FROM fandian f left OUTER JOIN fandian_user fu on f.resource_id = fu.fandian_id
-    WHERE fu.resource_id is NULL or fu.recall_date = date_format(NOW(),'%Y-%m-%d')
+    <include refid="wheresql" />
   </select>
 
   <!--修改状态-->
@@ -99,4 +141,17 @@
       </if>
       )
   </insert>
+
+  <!--获取地区字典表-->
+  <select id="getCodeArea" resultType="java.util.Map">
+    SELECT * FROM code_area
+  </select>
+
+  <!--根据饭店id获取菜品-->
+  <select id="getCaipinByFandianId" resultType="java.util.Map" parameterType="java.util.Map">
+    SELECT * FROM caipin WHERE fandianid = #{fandian_id} limit #{start},10
+  </select>
+  <select id="getCaipinByFandianIdCount" resultType="int" parameterType="java.util.Map">
+    SELECT count(*) FROM caipin WHERE fandianid = #{fandian_id}
+  </select>
 </mapper>
