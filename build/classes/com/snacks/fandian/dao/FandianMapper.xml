@@ -7,11 +7,11 @@
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="meituanvaluate" property="meituanvaluate" jdbcType="VARCHAR" />
-    <result column="elemevaluate" property="elemevaluate" jdbcType="VARCHAR" />
+    <result column="meituanevaluate" property="meituanevaluate" jdbcType="VARCHAR" />
+    <result column="elemeevaluate" property="elemeevaluate" jdbcType="VARCHAR" />
     <result column="baiduevaluate" property="baiduevaluate" jdbcType="VARCHAR" />
     <result column="lastmonthsales" property="lastmonthsales" jdbcType="VARCHAR" />
-    <result column="totlesales" property="totlesales" jdbcType="VARCHAR" />
+    <result column="totalsales" property="totalsales" jdbcType="VARCHAR" />
     <result column="province" property="province" jdbcType="VARCHAR" />
     <result column="city" property="city" jdbcType="VARCHAR" />
     <result column="lng" property="lng" jdbcType="VARCHAR" />
@@ -27,8 +27,8 @@
     <result column="areaid" property="areaid" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    resource_id, title, url, address, phone, meituanvaluate, elemevaluate, baiduevaluate, 
-    lastmonthsales, totlesales, province, city, lng, lat, state, updatetime, baidu, eleme, 
+    resource_id, title, url, address, phone, meituanevaluate, elemeevaluate, baiduevaluate, 
+    lastmonthsales, totalsales, province, city, lng, lat, state, updatetime, baidu, eleme, 
     meituan, newre, eachmonthsales, diqu, areaid
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -37,23 +37,29 @@
     from fandian
     where resource_id = #{resourceId,jdbcType=VARCHAR}
   </select>
+  <select id="selectFandianByPhone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from fandian
+    where phone = #{phone} limit 1
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from fandian
     where resource_id = #{resourceId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.snacks.fandian.model.Fandian" >
     insert into fandian (resource_id, title, url, 
-      address, phone, meituanvaluate, 
-      elemevaluate, baiduevaluate, lastmonthsales, 
-      totlesales, province, city, 
+      address, phone, meituanevaluate, 
+      elemeevaluate, baiduevaluate, lastmonthsales, 
+      totalsales, province, city, 
       lng, lat, state, updatetime, 
       baidu, eleme, meituan, 
       newre, eachmonthsales, diqu, 
       areaid)
     values (#{resourceId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{meituanvaluate,jdbcType=VARCHAR}, 
-      #{elemevaluate,jdbcType=VARCHAR}, #{baiduevaluate,jdbcType=VARCHAR}, #{lastmonthsales,jdbcType=VARCHAR}, 
-      #{totlesales,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{meituanevaluate,jdbcType=VARCHAR}, 
+      #{elemeevaluate,jdbcType=VARCHAR}, #{baiduevaluate,jdbcType=VARCHAR}, #{lastmonthsales,jdbcType=VARCHAR}, 
+      #{totalsales,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{baidu,jdbcType=VARCHAR}, #{eleme,jdbcType=VARCHAR}, #{meituan,jdbcType=VARCHAR}, 
       #{newre,jdbcType=VARCHAR}, #{eachmonthsales,jdbcType=VARCHAR}, #{diqu,jdbcType=VARCHAR}, 
@@ -77,11 +83,11 @@
       <if test="phone != null" >
         phone,
       </if>
-      <if test="meituanvaluate != null" >
-        meituanvaluate,
+      <if test="meituanevaluate != null" >
+        meituanevaluate,
       </if>
-      <if test="elemevaluate != null" >
-        elemevaluate,
+      <if test="elemeevaluate != null" >
+        elemeevaluate,
       </if>
       <if test="baiduevaluate != null" >
         baiduevaluate,
@@ -89,8 +95,8 @@
       <if test="lastmonthsales != null" >
         lastmonthsales,
       </if>
-      <if test="totlesales != null" >
-        totlesales,
+      <if test="totalsales != null" >
+        totalsales,
       </if>
       <if test="province != null" >
         province,
@@ -148,11 +154,11 @@
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="meituanvaluate != null" >
-        #{meituanvaluate,jdbcType=VARCHAR},
+      <if test="meituanevaluate != null" >
+        #{meituanevaluate,jdbcType=VARCHAR},
       </if>
-      <if test="elemevaluate != null" >
-        #{elemevaluate,jdbcType=VARCHAR},
+      <if test="elemeevaluate != null" >
+        #{elemeevaluate,jdbcType=VARCHAR},
       </if>
       <if test="baiduevaluate != null" >
         #{baiduevaluate,jdbcType=VARCHAR},
@@ -160,8 +166,8 @@
       <if test="lastmonthsales != null" >
         #{lastmonthsales,jdbcType=VARCHAR},
       </if>
-      <if test="totlesales != null" >
-        #{totlesales,jdbcType=VARCHAR},
+      <if test="totalsales != null" >
+        #{totalsales,jdbcType=VARCHAR},
       </if>
       <if test="province != null" >
         #{province,jdbcType=VARCHAR},
@@ -219,11 +225,11 @@
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="meituanvaluate != null" >
-        meituanvaluate = #{meituanvaluate,jdbcType=VARCHAR},
+      <if test="meituanevaluate != null" >
+        meituanevaluate = #{meituanevaluate,jdbcType=VARCHAR},
       </if>
-      <if test="elemevaluate != null" >
-        elemevaluate = #{elemevaluate,jdbcType=VARCHAR},
+      <if test="elemeevaluate != null" >
+        elemeevaluate = #{elemeevaluate,jdbcType=VARCHAR},
       </if>
       <if test="baiduevaluate != null" >
         baiduevaluate = #{baiduevaluate,jdbcType=VARCHAR},
@@ -231,8 +237,8 @@
       <if test="lastmonthsales != null" >
         lastmonthsales = #{lastmonthsales,jdbcType=VARCHAR},
       </if>
-      <if test="totlesales != null" >
-        totlesales = #{totlesales,jdbcType=VARCHAR},
+      <if test="totalsales != null" >
+        totalsales = #{totalsales,jdbcType=VARCHAR},
       </if>
       <if test="province != null" >
         province = #{province,jdbcType=VARCHAR},
@@ -282,11 +288,11 @@
       url = #{url,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      meituanvaluate = #{meituanvaluate,jdbcType=VARCHAR},
-      elemevaluate = #{elemevaluate,jdbcType=VARCHAR},
+      meituanevaluate = #{meituanevaluate,jdbcType=VARCHAR},
+      elemeevaluate = #{elemeevaluate,jdbcType=VARCHAR},
       baiduevaluate = #{baiduevaluate,jdbcType=VARCHAR},
       lastmonthsales = #{lastmonthsales,jdbcType=VARCHAR},
-      totlesales = #{totlesales,jdbcType=VARCHAR},
+      totalsales = #{totalsales,jdbcType=VARCHAR},
       province = #{province,jdbcType=VARCHAR},
       city = #{city,jdbcType=VARCHAR},
       lng = #{lng,jdbcType=VARCHAR},

@@ -13,9 +13,9 @@ public class Fandiandata {
 
     private String phone;
 
-    private String meituanvaluate;
+    private String meituanevaluate;
 
-    private String elemevaluate;
+    private String elemeevaluate;
 
     private String baiduevaluate;
 
@@ -42,6 +42,8 @@ public class Fandiandata {
     private Integer meituansales;
 
     private Integer elemesales;
+
+    private Integer totalsales;
 
     private String flg;
 
@@ -85,20 +87,20 @@ public class Fandiandata {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getMeituanvaluate() {
-        return meituanvaluate;
+    public String getMeituanevaluate() {
+        return meituanevaluate;
     }
 
-    public void setMeituanvaluate(String meituanvaluate) {
-        this.meituanvaluate = meituanvaluate == null ? null : meituanvaluate.trim();
+    public void setMeituanevaluate(String meituanevaluate) {
+        this.meituanevaluate = meituanevaluate == null ? null : meituanevaluate.trim();
     }
 
-    public String getElemevaluate() {
-        return elemevaluate;
+    public String getElemeevaluate() {
+        return elemeevaluate;
     }
 
-    public void setElemevaluate(String elemevaluate) {
-        this.elemevaluate = elemevaluate == null ? null : elemevaluate.trim();
+    public void setElemeevaluate(String elemeevaluate) {
+        this.elemeevaluate = elemeevaluate == null ? null : elemeevaluate.trim();
     }
 
     public String getBaiduevaluate() {
@@ -203,6 +205,14 @@ public class Fandiandata {
 
     public void setElemesales(Integer elemesales) {
         this.elemesales = elemesales;
+    }
+
+    public Integer getTotalsales() {
+        return totalsales;
+    }
+
+    public void setTotalsales(Integer totalsales) {
+        this.totalsales = totalsales;
     }
 
     public String getFlg() {

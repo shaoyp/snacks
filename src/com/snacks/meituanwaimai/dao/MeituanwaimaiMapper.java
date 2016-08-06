@@ -1,5 +1,7 @@
 package com.snacks.meituanwaimai.dao;
 
+import java.util.List;
+
 import com.snacks.meituanwaimai.model.Meituanwaimai;
 
 public interface MeituanwaimaiMapper {
@@ -13,7 +15,7 @@ public interface MeituanwaimaiMapper {
 
     int updateByPrimaryKeySelective(Meituanwaimai record);
 
-    int updateByPrimaryKeyWithBLOBs(Meituanwaimai record);
-
     int updateByPrimaryKey(Meituanwaimai record);
+    
+    List<Meituanwaimai> selectByMerge();
 }

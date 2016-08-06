@@ -6,12 +6,27 @@ dataHandle.js = {};
 dataHandle.js.getAll = function () {
 };
 
-	
+//合并外卖数据（fandiandata）
 dataHandle.js.mergeData = function (obj) {
-	alert(path)
-	alert(basePath)
-	$.post(path+"/dataHandle/dataHandle_merge.action",{},function(data){
-		alert(2)
+	$.post(path+"/dataHandle/dataHandle_mergeData.action",{},function(data){
+	});
+};
+
+//合并饭店数据（fandian）
+dataHandle.js.mergeFandian = function (obj) {
+	$.post(path+"/dataHandle/dataHandle_mergeFandian.action",{},function(data){
+	});
+};
+
+//合并坐标点（fandian）
+dataHandle.js.mergeZuobiao = function (obj) {
+	$.post(path+"/dataHandle/dataHandle_mergeZuobiao.action",{},function(data){
+	});
+};
+
+//导出菜品 （caipin）
+dataHandle.js.mergeCaipin = function (obj) {
+	$.post(path+"/dataHandle/dataHandle_mergeCaipin.action",{},function(data){
 	});
 };
 

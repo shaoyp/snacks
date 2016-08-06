@@ -1,7 +1,5 @@
 package com.snacks.dataHandle.action;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 import javax.annotation.Resource;
 
@@ -9,8 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 
 import com.snacks.common.action.BaseAction;
-import com.snacks.baiduwaimai.model.Baiduwaimai;
-import com.snacks.utils.Pager;
+import com.snacks.dataHandle.service.DataHandleService;
 
 @Controller("dataHandleAction")
 public class DataHandleAction extends BaseAction{
@@ -27,15 +24,36 @@ public class DataHandleAction extends BaseAction{
 	public String callbackType;
 	public String forwardUrl;
 	
+	@Resource
+	private DataHandleService dataHandleService;
 	
 	public String show(){
 		logger.info("-------------------------dataHandleAction show--------------------------");
 		return "show";
 	}
 	
-	public String merge(){
-		logger.info("-------------------------dataHandleAction merge--------------------------");
-		return "merge";
+	public String mergeData(){
+		logger.info("-------------------------dataHandleAction mergeData--------------------------");
+		dataHandleService.mergeData();
+		return "mergeData";
+	}
+	
+	public String mergeFandian(){
+		logger.info("-------------------------dataHandleAction mergeFandian--------------------------");
+		dataHandleService.mergeFandian();
+		return "mergeFandian";
+	}
+	
+	public String mergeZuobiao(){
+		logger.info("-------------------------dataHandleAction mergeZuobiao--------------------------");
+		dataHandleService.mergeZuobiao();
+		return "mergeZuobiao";
+	}
+	
+	public String mergeCaipin(){
+		logger.info("-------------------------dataHandleAction mergeCaipin--------------------------");
+		dataHandleService.mergeCaipin();
+		return "mergeCaipin";
 	}
 	
 

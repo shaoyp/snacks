@@ -7,8 +7,8 @@
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="meituanvaluate" property="meituanvaluate" jdbcType="VARCHAR" />
-    <result column="elemevaluate" property="elemevaluate" jdbcType="VARCHAR" />
+    <result column="meituanevaluate" property="meituanevaluate" jdbcType="VARCHAR" />
+    <result column="elemeevaluate" property="elemeevaluate" jdbcType="VARCHAR" />
     <result column="baiduevaluate" property="baiduevaluate" jdbcType="VARCHAR" />
     <result column="sales" property="sales" jdbcType="VARCHAR" />
     <result column="get_time" property="getTime" jdbcType="TIMESTAMP" />
@@ -22,13 +22,26 @@
     <result column="baidusales" property="baidusales" jdbcType="INTEGER" />
     <result column="meituansales" property="meituansales" jdbcType="INTEGER" />
     <result column="elemesales" property="elemesales" jdbcType="INTEGER" />
+    <result column="totalsales" property="totalsales" jdbcType="INTEGER" />
     <result column="flg" property="flg" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    resource_id, title, url, address, phone, meituanvaluate, elemevaluate, baiduevaluate, 
+    resource_id, title, url, address, phone, meituanevaluate, elemeevaluate, baiduevaluate, 
     sales, get_time, province, city, lng, lat, baidu, meituan, eleme, baidusales, meituansales, 
-    elemesales, flg
+    elemesales, totalsales, flg
   </sql>
+  <select id="selectFandiandataByPhone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from fandiandata
+    where flg = 0 and phone = #{phone} limit 1
+  </select>
+  <select id="selectByMerge" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from fandiandata
+    where flg = 0 
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
@@ -41,19 +54,21 @@
   </delete>
   <insert id="insert" parameterType="com.snacks.fandiandata.model.Fandiandata" >
     insert into fandiandata (resource_id, title, url, 
-      address, phone, meituanvaluate, 
-      elemevaluate, baiduevaluate, sales, 
+      address, phone, meituanevaluate, 
+      elemeevaluate, baiduevaluate, sales, 
       get_time, province, city, 
       lng, lat, baidu, meituan, 
       eleme, baidusales, meituansales, 
-      elemesales, flg)
+      elemesales, totalsales, flg
+      )
     values (#{resourceId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{meituanvaluate,jdbcType=VARCHAR}, 
-      #{elemevaluate,jdbcType=VARCHAR}, #{baiduevaluate,jdbcType=VARCHAR}, #{sales,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{meituanevaluate,jdbcType=VARCHAR}, 
+      #{elemeevaluate,jdbcType=VARCHAR}, #{baiduevaluate,jdbcType=VARCHAR}, #{sales,jdbcType=VARCHAR}, 
       #{getTime,jdbcType=TIMESTAMP}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{baidu,jdbcType=VARCHAR}, #{meituan,jdbcType=VARCHAR}, 
       #{eleme,jdbcType=VARCHAR}, #{baidusales,jdbcType=INTEGER}, #{meituansales,jdbcType=INTEGER}, 
-      #{elemesales,jdbcType=INTEGER}, #{flg,jdbcType=CHAR})
+      #{elemesales,jdbcType=INTEGER}, #{totalsales,jdbcType=INTEGER}, #{flg,jdbcType=CHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.snacks.fandiandata.model.Fandiandata" >
     insert into fandiandata
@@ -73,11 +88,11 @@
       <if test="phone != null" >
         phone,
       </if>
-      <if test="meituanvaluate != null" >
-        meituanvaluate,
+      <if test="meituanevaluate != null" >
+        meituanevaluate,
       </if>
-      <if test="elemevaluate != null" >
-        elemevaluate,
+      <if test="elemeevaluate != null" >
+        elemeevaluate,
       </if>
       <if test="baiduevaluate != null" >
         baiduevaluate,
@@ -118,6 +133,9 @@
       <if test="elemesales != null" >
         elemesales,
       </if>
+      <if test="totalsales != null" >
+        totalsales,
+      </if>
       <if test="flg != null" >
         flg,
       </if>
@@ -138,11 +156,11 @@
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="meituanvaluate != null" >
-        #{meituanvaluate,jdbcType=VARCHAR},
+      <if test="meituanevaluate != null" >
+        #{meituanevaluate,jdbcType=VARCHAR},
       </if>
-      <if test="elemevaluate != null" >
-        #{elemevaluate,jdbcType=VARCHAR},
+      <if test="elemeevaluate != null" >
+        #{elemeevaluate,jdbcType=VARCHAR},
       </if>
       <if test="baiduevaluate != null" >
         #{baiduevaluate,jdbcType=VARCHAR},
@@ -183,6 +201,9 @@
       <if test="elemesales != null" >
         #{elemesales,jdbcType=INTEGER},
       </if>
+      <if test="totalsales != null" >
+        #{totalsales,jdbcType=INTEGER},
+      </if>
       <if test="flg != null" >
         #{flg,jdbcType=CHAR},
       </if>
@@ -203,11 +224,11 @@
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="meituanvaluate != null" >
-        meituanvaluate = #{meituanvaluate,jdbcType=VARCHAR},
+      <if test="meituanevaluate != null" >
+        meituanevaluate = #{meituanevaluate,jdbcType=VARCHAR},
       </if>
-      <if test="elemevaluate != null" >
-        elemevaluate = #{elemevaluate,jdbcType=VARCHAR},
+      <if test="elemeevaluate != null" >
+        elemeevaluate = #{elemeevaluate,jdbcType=VARCHAR},
       </if>
       <if test="baiduevaluate != null" >
         baiduevaluate = #{baiduevaluate,jdbcType=VARCHAR},
@@ -248,6 +269,9 @@
       <if test="elemesales != null" >
         elemesales = #{elemesales,jdbcType=INTEGER},
       </if>
+      <if test="totalsales != null" >
+        totalsales = #{totalsales,jdbcType=INTEGER},
+      </if>
       <if test="flg != null" >
         flg = #{flg,jdbcType=CHAR},
       </if>
@@ -260,8 +284,8 @@
       url = #{url,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      meituanvaluate = #{meituanvaluate,jdbcType=VARCHAR},
-      elemevaluate = #{elemevaluate,jdbcType=VARCHAR},
+      meituanevaluate = #{meituanevaluate,jdbcType=VARCHAR},
+      elemeevaluate = #{elemeevaluate,jdbcType=VARCHAR},
       baiduevaluate = #{baiduevaluate,jdbcType=VARCHAR},
       sales = #{sales,jdbcType=VARCHAR},
       get_time = #{getTime,jdbcType=TIMESTAMP},
@@ -275,6 +299,7 @@
       baidusales = #{baidusales,jdbcType=INTEGER},
       meituansales = #{meituansales,jdbcType=INTEGER},
       elemesales = #{elemesales,jdbcType=INTEGER},
+      totalsales = #{totalsales,jdbcType=INTEGER},
       flg = #{flg,jdbcType=CHAR}
     where resource_id = #{resourceId,jdbcType=VARCHAR}
   </update>

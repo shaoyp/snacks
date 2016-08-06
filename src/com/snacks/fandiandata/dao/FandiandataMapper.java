@@ -1,5 +1,7 @@
 package com.snacks.fandiandata.dao;
 
+import java.util.List;
+
 import com.snacks.fandiandata.model.Fandiandata;
 
 public interface FandiandataMapper {
@@ -14,4 +16,8 @@ public interface FandiandataMapper {
     int updateByPrimaryKeySelective(Fandiandata record);
 
     int updateByPrimaryKey(Fandiandata record);
+    
+    Fandiandata selectFandiandataByPhone(String phone);
+    
+    List<Fandiandata> selectByMerge();
 }

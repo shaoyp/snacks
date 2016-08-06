@@ -1,5 +1,7 @@
 package com.snacks.elemewaimai.dao;
 
+import java.util.List;
+
 import com.snacks.elemewaimai.model.Elemewaimai;
 
 public interface ElemewaimaiMapper {
@@ -13,7 +15,7 @@ public interface ElemewaimaiMapper {
 
     int updateByPrimaryKeySelective(Elemewaimai record);
 
-    int updateByPrimaryKeyWithBLOBs(Elemewaimai record);
-
     int updateByPrimaryKey(Elemewaimai record);
+    
+    List<Elemewaimai> selectByMerge();
 }

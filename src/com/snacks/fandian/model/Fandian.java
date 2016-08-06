@@ -13,15 +13,15 @@ public class Fandian {
 
     private String phone;
 
-    private String meituanvaluate;
+    private String meituanevaluate;
 
-    private String elemevaluate;
+    private String elemeevaluate;
 
     private String baiduevaluate;
 
     private String lastmonthsales;
 
-    private String totlesales;
+    private String totalsales;
 
     private String province;
 
@@ -89,20 +89,20 @@ public class Fandian {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getMeituanvaluate() {
-        return meituanvaluate;
+    public String getMeituanevaluate() {
+        return meituanevaluate;
     }
 
-    public void setMeituanvaluate(String meituanvaluate) {
-        this.meituanvaluate = meituanvaluate == null ? null : meituanvaluate.trim();
+    public void setMeituanevaluate(String meituanevaluate) {
+        this.meituanevaluate = meituanevaluate == null ? null : meituanevaluate.trim();
     }
 
-    public String getElemevaluate() {
-        return elemevaluate;
+    public String getElemeevaluate() {
+        return elemeevaluate;
     }
 
-    public void setElemevaluate(String elemevaluate) {
-        this.elemevaluate = elemevaluate == null ? null : elemevaluate.trim();
+    public void setElemeevaluate(String elemeevaluate) {
+        this.elemeevaluate = elemeevaluate == null ? null : elemeevaluate.trim();
     }
 
     public String getBaiduevaluate() {
@@ -121,12 +121,12 @@ public class Fandian {
         this.lastmonthsales = lastmonthsales == null ? null : lastmonthsales.trim();
     }
 
-    public String getTotlesales() {
-        return totlesales;
+    public String getTotalsales() {
+        return totalsales;
     }
 
-    public void setTotlesales(String totlesales) {
-        this.totlesales = totlesales == null ? null : totlesales.trim();
+    public void setTotalsales(String totalsales) {
+        this.totalsales = totalsales == null ? null : totalsales.trim();
     }
 
     public String getProvince() {

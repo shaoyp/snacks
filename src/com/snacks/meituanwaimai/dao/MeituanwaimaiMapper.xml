@@ -10,25 +10,25 @@
     <result column="evaluate" property="evaluate" jdbcType="VARCHAR" />
     <result column="sales" property="sales" jdbcType="VARCHAR" />
     <result column="get_time" property="getTime" jdbcType="TIMESTAMP" />
+    <result column="caipin" property="caipin" jdbcType="VARCHAR" />
     <result column="areaid" property="areaid" jdbcType="VARCHAR" />
     <result column="flg" property="flg" jdbcType="CHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.snacks.meituanwaimai.model.Meituanwaimai" extends="BaseResultMap" >
-    <result column="caipin" property="caipin" jdbcType="LONGVARCHAR" />
-  </resultMap>
   <sql id="Base_Column_List" >
-    resource_id, title, url, address, phone, evaluate, sales, get_time, areaid, flg
+    resource_id, title, url, address, phone, evaluate, sales, get_time, caipin, areaid, 
+    flg
   </sql>
-  <sql id="Blob_Column_List" >
-    caipin
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from meituanwaimai
     where resource_id = #{resourceId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByMerge" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from meituanwaimai
+    where flg = 0;
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from meituanwaimai
@@ -37,12 +37,12 @@
   <insert id="insert" parameterType="com.snacks.meituanwaimai.model.Meituanwaimai" >
     insert into meituanwaimai (resource_id, title, url, 
       address, phone, evaluate, 
-      sales, get_time, areaid, 
-      flg, caipin)
+      sales, get_time, caipin, 
+      areaid, flg)
     values (#{resourceId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{evaluate,jdbcType=VARCHAR}, 
-      #{sales,jdbcType=VARCHAR}, #{getTime,jdbcType=TIMESTAMP}, #{areaid,jdbcType=VARCHAR}, 
-      #{flg,jdbcType=CHAR}, #{caipin,jdbcType=LONGVARCHAR})
+      #{sales,jdbcType=VARCHAR}, #{getTime,jdbcType=TIMESTAMP}, #{caipin,jdbcType=VARCHAR}, 
+      #{areaid,jdbcType=VARCHAR}, #{flg,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.snacks.meituanwaimai.model.Meituanwaimai" >
     insert into meituanwaimai
@@ -71,14 +71,14 @@
       <if test="getTime != null" >
         get_time,
       </if>
+      <if test="caipin != null" >
+        caipin,
+      </if>
       <if test="areaid != null" >
         areaid,
       </if>
       <if test="flg != null" >
         flg,
-      </if>
-      <if test="caipin != null" >
-        caipin,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -106,14 +106,14 @@
       <if test="getTime != null" >
         #{getTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="caipin != null" >
+        #{caipin,jdbcType=VARCHAR},
+      </if>
       <if test="areaid != null" >
         #{areaid,jdbcType=VARCHAR},
       </if>
       <if test="flg != null" >
         #{flg,jdbcType=CHAR},
-      </if>
-      <if test="caipin != null" >
-        #{caipin,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -141,30 +141,16 @@
       <if test="getTime != null" >
         get_time = #{getTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="caipin != null" >
+        caipin = #{caipin,jdbcType=VARCHAR},
+      </if>
       <if test="areaid != null" >
         areaid = #{areaid,jdbcType=VARCHAR},
       </if>
       <if test="flg != null" >
         flg = #{flg,jdbcType=CHAR},
       </if>
-      <if test="caipin != null" >
-        caipin = #{caipin,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where resource_id = #{resourceId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.snacks.meituanwaimai.model.Meituanwaimai" >
-    update meituanwaimai
-    set title = #{title,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      evaluate = #{evaluate,jdbcType=VARCHAR},
-      sales = #{sales,jdbcType=VARCHAR},
-      get_time = #{getTime,jdbcType=TIMESTAMP},
-      areaid = #{areaid,jdbcType=VARCHAR},
-      flg = #{flg,jdbcType=CHAR},
-      caipin = #{caipin,jdbcType=LONGVARCHAR}
     where resource_id = #{resourceId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.snacks.meituanwaimai.model.Meituanwaimai" >
@@ -176,6 +162,7 @@
       evaluate = #{evaluate,jdbcType=VARCHAR},
       sales = #{sales,jdbcType=VARCHAR},
       get_time = #{getTime,jdbcType=TIMESTAMP},
+      caipin = #{caipin,jdbcType=VARCHAR},
       areaid = #{areaid,jdbcType=VARCHAR},
       flg = #{flg,jdbcType=CHAR}
     where resource_id = #{resourceId,jdbcType=VARCHAR}

@@ -1,5 +1,7 @@
 package com.snacks.baiduwaimai.dao;
 
+import java.util.List;
+
 import com.snacks.baiduwaimai.model.Baiduwaimai;
 
 public interface BaiduwaimaiMapper {
@@ -13,7 +15,7 @@ public interface BaiduwaimaiMapper {
 
     int updateByPrimaryKeySelective(Baiduwaimai record);
 
-    int updateByPrimaryKeyWithBLOBs(Baiduwaimai record);
-
     int updateByPrimaryKey(Baiduwaimai record);
+    
+    List<Baiduwaimai> selectByMerge();
 }

@@ -1,6 +1,7 @@
 package com.snacks.fandian.dao;
 
 import com.snacks.fandian.model.Fandian;
+import com.snacks.fandiandata.model.Fandiandata;
 
 public interface FandianMapper {
     int deleteByPrimaryKey(String resourceId);
@@ -14,4 +15,7 @@ public interface FandianMapper {
     int updateByPrimaryKeySelective(Fandian record);
 
     int updateByPrimaryKey(Fandian record);
+    
+    Fandian selectFandianByPhone(String phone);
+    
 }

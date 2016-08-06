@@ -19,11 +19,11 @@ public class Meituanwaimai {
 
     private Date getTime;
 
+    private String caipin;
+
     private String areaid;
 
     private String flg;
-
-    private String caipin;
 
     public String getResourceId() {
         return resourceId;
@@ -89,6 +89,14 @@ public class Meituanwaimai {
         this.getTime = getTime;
     }
 
+    public String getCaipin() {
+        return caipin;
+    }
+
+    public void setCaipin(String caipin) {
+        this.caipin = caipin == null ? null : caipin.trim();
+    }
+
     public String getAreaid() {
         return areaid;
     }
@@ -103,13 +111,5 @@ public class Meituanwaimai {
 
     public void setFlg(String flg) {
         this.flg = flg == null ? null : flg.trim();
-    }
-
-    public String getCaipin() {
-        return caipin;
-    }
-
-    public void setCaipin(String caipin) {
-        this.caipin = caipin == null ? null : caipin.trim();
     }
 }
