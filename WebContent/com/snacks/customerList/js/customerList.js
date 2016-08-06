@@ -297,7 +297,7 @@ customerList.js.openDetail = function (fandianId,fandianTitle) {
         type: 2,
         title: "菜品详细信息",
         closeBtn: 1, //不显示关闭按钮
-        area: ['340px','560px'],
+        area: ['540px','740px'],
         shift: 0,
         maxmin: true,//是否带有全屏按钮
         content: [path+'/customerList/customerList_detail.action','no'], //iframe的url，no代表不显示滚动条
@@ -308,5 +308,5 @@ customerList.js.openDetail = function (fandianId,fandianTitle) {
 
         }
     });
-    layer.full(index);
+    // layer.full(index);
 };

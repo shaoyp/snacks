@@ -28,7 +28,7 @@
       AND f.title like concat('%',#{query_fandian},'%')
     </if>
     <if test="query_phone != null and query_phone != ''">
-      AND f.phone = #{query_phone}
+      AND f.phone like concat('%',#{query_phone},'%')
     </if>
     <if test="query_area != null and query_area != ''">
       AND f.diqu = #{query_area}

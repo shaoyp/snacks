@@ -93,11 +93,11 @@
                             {{/if}}
                             {{each result as record i}}
                             <li {{if record.fuid != null }} class="called" {{/if}} >
-                            <div class="row-fluid"  style="margin-top:0px;" onclick="customerList.js.openDetail('{{record.resource_id}}','{{record.title}}')">
+                            <div class="row-fluid"  style="margin-top:0px;" >
 
                                 <div class="span7">
                                     <div class="user-thumb"> <img width="40" height="40" src="" alt=""> </div>
-                                    <div class="article-post"> <span class="user-info" ><h5>{{record.title}}</h5></span>
+                                    <div class="article-post"> <span class="user-info" onclick="customerList.js.openDetail('{{record.resource_id}}','{{record.title}}')"><h5>{{record.title}}</h5></span>
                                         <p>电话:<a href="#">{{record.phone}}</a>&nbsp;&nbsp;&nbsp;地址:{{record.address}} </p>
                                     </div>
                                 </div>
