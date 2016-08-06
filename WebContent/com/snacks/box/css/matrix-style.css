@@ -1126,7 +1126,7 @@ form {
 }
 .form-horizontal .control-group {
 	border-top: 1px solid #ffffff;
-	border-bottom: 1px solid #eeeeee;
+	/*border-bottom: 1px solid #eeeeee;*/
 	margin-bottom: 0;
 }
 .form-horizontal .control-group:last-child {
@@ -1134,10 +1134,12 @@ form {
 }
 .form-horizontal .control-label {
 	padding-top: 15px;
-	width: 180px;
+	/*width: 180px;*/
+	width:110px;
 }
 .form-horizontal .controls {
-	margin-left: 200px;
+	/*margin-left: 200px;*/
+	margin-left: 120px;
 	padding: 10px 0;
 }
 .form-horizontal input[type=text], .form-horizontal input[type=password], .form-horizontal textarea {

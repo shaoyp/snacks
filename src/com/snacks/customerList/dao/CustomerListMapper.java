@@ -15,7 +15,7 @@ public interface CustomerListMapper {
      * @return
      */
     List<Map<String, Object>> getCustomerList(Map<String, Object> map);
-    int getCustomerListCount();
+    int getCustomerListCount(Map<String, Object> map);
 
     /**
      * 修改饭店业务员信息
@@ -28,5 +28,19 @@ public interface CustomerListMapper {
      * @param fandianUser
      */
     void addFandianUser(FandianUser fandianUser);
+
+    /**
+     * 获取地区代码
+     * @return
+     */
+    List<Map<String, Object>> getCodeArea();
+
+    /**
+     * 查询菜品信息
+     * @param param 饭店ID
+     * @return
+     */
+    List<Map<String, Object>> getCaipinByFandianId(Map<String, Object> param);
+    int getCaipinByFandianIdCount(Map<String, Object> param);
 
 }

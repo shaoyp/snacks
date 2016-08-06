@@ -5,8 +5,22 @@ jQuery.namespace("customerList");
 
 $(function () {
     
+    // select组件初始化
+    $.post(path+"/customerList/customerList_getCodeArea.action",{},function (data) {
+        var codeString = "<option value=''>请选择</option>";
+        for(var i=0;i<data.codeAreaList.length;i++){
+            codeString += "<option value='"+data.codeAreaList[i].resource_id+"'>"+data.codeAreaList[i].area_name+"</option>"
+        }
+        $("#query_area").html(codeString).select2();
+    });
+
+    // 初始化列表数据
     $.post(path+"/customerList/customerList_getList.action",{
+        "param.start":0
     },function (data) {
+
+        // 清理dom节点中之前的日期组件,防止报错
+        $('.datepicker').remove();
 
         var html = template('grid_template',{'result':data.fandianList});
         // 渲染列表
@@ -65,9 +79,17 @@ $(function () {
             }
         });
 
+        // 初始化查询项的值
+        $("#query_box").find("input,select").each(function () {
+            if($(this)[0].type == "text"){
+                $(this).val(data[$(this).attr("id")]);
+            }else{
+                $("#query_area").val(data.query_area).trigger("change");
+            }
+        });
+
 
     });
-
     
 });
 
@@ -81,7 +103,7 @@ customerList.js.pageTo = function(curr){
     }
 
     $.post(path+"/customerList/customerList_getList.action",param,function (data) {
-        
+
         // 清理dom节点中之前的日期组件,防止报错
         $('.datepicker').remove();
         // $('input[name=wechat_input]').remove();
@@ -168,4 +190,123 @@ customerList.js.updateDate = function (obj) {
 customerList.js.operFandianUser = function(param){
     $.post(path+"/customerList/customerList_operFandianUser.action",param,function (data) {
     });
+};
+// 更多按钮点击事件
+customerList.js.more = function (_this) {
+    if($(_this).attr("value") == 0){
+        // 显示更多
+        $("div[name=more_div]").removeClass("hidden");
+        $(_this).attr("value",1).html("更少");
+    }else{
+        // 隐藏更多
+        $("div[name=more_div]").addClass("hidden");
+        $(_this).attr("value",0).html("更多");
+    }
+};
+// 清楚搜索项
+customerList.js.clearQueryData = function () {
+    $("#query_box").find("input").each(function () {
+            $(this).val("");
+    });
+    $("#query_area").val(null).trigger("change");
+};
+// 查询按钮点击事件
+customerList.js.query = function (){
+    var param = {};
+    $("#query_box").find("input,select").each(function () {
+        param[$(this).attr("id")]=$(this).val();
+    });
+    param["start"] = 0;
+
+    $.post(path+"/customerList/customerList_getList.action",param,function (data) {
+
+        // 清理dom节点中之前的日期组件,防止报错
+        $('.datepicker').remove();
+
+        var html = template('grid_template',{'result':data.fandianList});
+        // 渲染列表
+        $('#grid_ul').html(html);
+        
+        // 绑定日期组件
+        $('.datepicker').datepicker().on('changeDate',function() {
+
+            customerList.js.updateDate($(this));
+            $(this).blur();
+        });
+        // 绑定微信文本框回车事件
+        $("input[name=wechat_input]").on('keyup',function (event) {
+            // 文本修改标记颜色
+            $(this).addClass("not_save");
+
+            if($(this).val() == ''){
+                $(this).removeClass("not_save");
+            }
+
+            if(event.keyCode == "13"){
+                // 保存微信号
+                var param = {"fandianUser.wechat":$(this).val(),"fandianUser.fandianId":$(this).attr("fid"),"fandianUser.resourceId":$(this).attr("fuid")};
+                customerList.js.operFandianUser(param);
+                // $(this).removeClass("not_save").blur();
+                customerList.js.pageTo();
+            }
+        });
+
+        // 绑定备注文本框的回车事件
+        $("input[name=beizhu_input]").on('keyup',function (event) {
+
+            // 文本修改标记颜色
+            $(this).addClass("not_save");
+
+            if($(this).val() == ''){
+                $(this).removeClass("not_save");
+            }
+
+            if(event.keyCode == "13"){
+                // 保存微信号
+                var param = {"fandianUser.beizhu":$(this).val(),"fandianUser.fandianId":$(this).attr("fid"),"fandianUser.resourceId":$(this).attr("fuid")};
+                customerList.js.operFandianUser(param);
+                // $(this).removeClass("not_save").blur();
+                customerList.js.pageTo();
+            }
+        });
+
+        // 初始化分页组件
+        $('#callBackPager').extendPagination({
+            totalCount: data.count,
+            showPage: 10,
+            limit: 10,
+            curr:data.page,
+            callback: function (curr, limit, totalCount) {
+                customerList.js.pageTo(curr);
+            }
+        });
+
+
+    });
+};
+
+customerList.js.openDetail = function (fandianId,fandianTitle) {
+    // 将要查询的饭店id传给后台
+    $.post(path+'/customerList/customerList_setFandianId.action',
+        {"openDetail_fandianId":fandianId,"openDetail_fandiantitle":fandianTitle},
+        function (data) {
+
+    });
+
+    var index = layer.open({
+        type: 2,
+        title: "菜品详细信息",
+        closeBtn: 1, //不显示关闭按钮
+        area: ['340px','560px'],
+        shift: 0,
+        maxmin: true,//是否带有全屏按钮
+        content: [path+'/customerList/customerList_detail.action','no'], //iframe的url，no代表不显示滚动条
+        success: function(){ //弹出成功打开
+
+        },
+        end: function () { // 弹出层关闭
+
+        }
+    });
+    layer.full(index);
 };

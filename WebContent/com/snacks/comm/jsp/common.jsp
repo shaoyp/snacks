@@ -24,6 +24,7 @@ String loginName = request.getRemoteUser();
 <link rel="stylesheet" href="<%=path %>/com/snacks/box/css/jquery.gritter.css" />
 <link rel="stylesheet" href="<%=path %>/com/snacks/box/css/datepicker.css" />
 <link rel="stylesheet" href="<%=path %>/com/snacks/box/css/colorpicker.css" />
+<link rel="stylesheet" href="<%=path %>/com/snacks/box/css/select2.css" />
 <%--<script src="<%=path %>/com/snacks/plugin/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>--%>
 <script src="<%=path %>/com/snacks/box/js/jquery.min.js"></script>
 
@@ -49,6 +50,8 @@ String loginName = request.getRemoteUser();
 <script src="<%=path %>/com/snacks/box/js/jquery.peity.min.js"></script>
 <script src="<%=path %>/com/snacks/box/js/bootstrap-wysihtml5.js"></script>
 <script src="<%=path %>/com/snacks/plugin/bootStrapPager/js/extendPagination.js"></script>
+
+<script src="<%=path %>/com/snacks/plugin/layer-v1.9.3/layer.js"></script>
 <%--<script src="<%=path %>/com/snacks/box/js/jquery.flot.min.js"></script>--%>
 <%--<script src="<%=path %>/com/snacks/box/js/jquery.flot.resize.min.js"></script>--%>
 <%--<script src="<%=path %>/com/snacks/box/js/jquery.peity.min.js"></script>--%>

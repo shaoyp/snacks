@@ -23,8 +23,8 @@ public class CustomerListServiceImpl implements CustomerListService {
         return customerListMapper.getCustomerList(map);
     }
 
-    public int getCustomerListCount(){
-        return customerListMapper.getCustomerListCount();
+    public int getCustomerListCount(Map<String, Object> map){
+        return customerListMapper.getCustomerListCount(map);
     }
 
     /**
@@ -38,5 +38,26 @@ public class CustomerListServiceImpl implements CustomerListService {
         }else {
             customerListMapper.updateFandianUser(fandianUser);
         }
+    }
+
+    /**
+     * 获取地区代码
+     * @return
+     */
+    public List<Map<String, Object>> getCodeArea(){
+        return customerListMapper.getCodeArea();
+    }
+
+    /**
+     * 获取菜品信息
+     * @param param 饭店id
+     * @return
+     */
+    public List<Map<String, Object>> getCaipinByFandianId(Map<String, Object> param){
+        return customerListMapper.getCaipinByFandianId(param);
+    }
+
+    public int getCaipinByFandianIdCount(Map<String, Object> param){
+        return customerListMapper.getCaipinByFandianIdCount(param);
     }
 }
