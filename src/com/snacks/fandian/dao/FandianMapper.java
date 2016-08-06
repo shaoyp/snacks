@@ -1,5 +1,7 @@
 package com.snacks.fandian.dao;
 
+import java.util.List;
+
 import com.snacks.fandian.model.Fandian;
 import com.snacks.fandiandata.model.Fandiandata;
 
@@ -17,5 +19,7 @@ public interface FandianMapper {
     int updateByPrimaryKey(Fandian record);
     
     Fandian selectFandianByPhone(String phone);
+    
+    List<Fandian> selectAllFandianByCaipin();
     
 }

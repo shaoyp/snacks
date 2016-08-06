@@ -17,6 +17,9 @@
     from caipin
     where resource_id = #{resourceId,jdbcType=VARCHAR}
   </select>
+  <delete id="deleteAllCaipin" parameterType="java.lang.String" >
+    delete from caipin
+  </delete>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from caipin
     where resource_id = #{resourceId,jdbcType=VARCHAR}

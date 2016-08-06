@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.snacks.baiduwaimai.dao.BaiduwaimaiMapper;
 import com.snacks.baiduwaimai.model.Baiduwaimai;
+import com.snacks.caipin.dao.CaipinMapper;
 import com.snacks.dataHandle.service.DataHandleService;
 import com.snacks.elemewaimai.dao.ElemewaimaiMapper;
 import com.snacks.elemewaimai.model.Elemewaimai;
@@ -39,6 +40,9 @@ public class DataHandleServiceImpl implements DataHandleService {
 	
 	@Resource
 	private FandianMapper fandianMapper;
+	
+	@Resource
+	private CaipinMapper caipinMapper;
 	
 	
 	
@@ -291,7 +295,47 @@ public class DataHandleServiceImpl implements DataHandleService {
 
 	@Override
 	public void mergeCaipin() {
-		// TODO Auto-generated method stub
+		// 删除菜品数据
+		try {
+			
+			int delResult = caipinMapper.deleteAllCaipin();
+			// 导入菜品数据
+			List<Fandian> fandianList = fandianMapper.selectAllFandianByCaipin();
+			
+			String cp = "";
+			Baiduwaimai b = null;
+			Meituanwaimai m = null;
+			Elemewaimai e = null;
+			for (Fandian fandian : fandianList) {
+				//百度外卖菜品
+				if(null != fandian.getBaidu() && !"".equals(fandian.getBaidu())){
+					b = baiduwaimaiMapper.selectByPrimaryKey(fandian.getBaidu());
+					if(null != b && !"".equals(b)){
+						cp = b.getCaipin();
+						System.out.println("b:"+cp);
+					}
+				}
+				//美团外卖菜品
+				if(null != fandian.getMeituan() && !"".equals(fandian.getMeituan())){
+					m = meituanwaimaiMapper.selectByPrimaryKey(fandian.getMeituan());
+					if(null != m && !"".equals(m)){
+						cp = m.getCaipin();
+						System.out.println("m:"+cp);
+					}
+				}
+				//饿了么外卖菜品
+				if(null != fandian.getEleme() && !"".equals(fandian.getEleme())){
+					e = elemewaimaiMapper.selectByPrimaryKey(fandian.getEleme());
+					if(null != e && !"".equals(e)){
+						cp = e.getCaipin();
+						System.out.println("e:"+cp);
+					}
+				}
+				System.out.println("--------------------------------------------");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 //	/* 

@@ -43,6 +43,11 @@
     from fandian
     where phone = #{phone} limit 1
   </select>
+  <select id="selectAllFandianByCaipin" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from fandian
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from fandian
     where resource_id = #{resourceId,jdbcType=VARCHAR}

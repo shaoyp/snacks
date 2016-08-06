@@ -34,11 +34,11 @@
       AND f.diqu = #{query_area}
     </if>
     <if test="query_sales_min != null and query_sales_min != ''">
-      AND f.totlesales+0 >= #{query_sales_min}+0
+      AND f.totalsales+0 >= #{query_sales_min}+0
     </if>
     <if test="query_sales_max != null and query_sales_max != ''">
       <![CDATA[
-      AND f.totlesales+0 <= #{query_sales_max}+0
+      AND f.totalsales+0 <= #{query_sales_max}+0
       ]]>
     </if>
     <if test="(query_caipin != null and query_caipin !='') or (query_prince_min != null and query_prince_min != '') or (query_prince_max != null and query_prince_max != '')">

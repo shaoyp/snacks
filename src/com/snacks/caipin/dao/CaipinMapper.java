@@ -4,7 +4,7 @@ import com.snacks.caipin.model.Caipin;
 
 public interface CaipinMapper {
     int deleteByPrimaryKey(String resourceId);
-
+    
     int insert(Caipin record);
 
     int insertSelective(Caipin record);
@@ -14,4 +14,6 @@ public interface CaipinMapper {
     int updateByPrimaryKeySelective(Caipin record);
 
     int updateByPrimaryKey(Caipin record);
+
+    int deleteAllCaipin();
 }
