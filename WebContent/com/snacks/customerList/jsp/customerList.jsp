@@ -93,7 +93,7 @@
                             {{/if}}
                             {{each result as record i}}
                             <li {{if record.fuid != null }} class="called" {{/if}} >
-                            <div class="row-fluid"  style="margin-top:0px;" onclick="customerList.js.openDetail()">
+                            <div class="row-fluid"  style="margin-top:0px;" onclick="customerList.js.openDetail('{{record.resource_id}}','{{record.title}}')">
 
                                 <div class="span7">
                                     <div class="user-thumb"> <img width="40" height="40" src="" alt=""> </div>

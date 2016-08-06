@@ -21,9 +21,9 @@ public class CustomerListAction extends BaseAction{
 	final Logger logger = Logger.getLogger(CustomerListAction.class);
 
 	private List<Map<String, Object>> fandianList;
-
+	// 数据量
 	private int count = 0;
-
+	// 当前页码
 	private int page = 1;
 
 	private FandianUser fandianUser;
@@ -49,6 +49,16 @@ public class CustomerListAction extends BaseAction{
 	private String query_prince_max;
 	// 地区代码
 	private List<Map<String, Object>> codeAreaList;
+	// 菜品list
+	private List<Map<String, Object>> caipinList;
+	// 详细页面使用的饭店id
+	private String openDetail_fandianId;
+	// 详细页面使用的饭店名称
+	private String openDetail_fandiantitle;
+	// 查询菜品详情的数量
+	private int caipinCount = 0;
+	// 菜品页码
+	private int caipinPage = 1;
 
 	@Autowired
 	CustomerListService customerListService;
@@ -113,6 +123,39 @@ public class CustomerListAction extends BaseAction{
 	public String getCodeArea(){
 		codeAreaList = customerListService.getCodeArea();
 		return "getCodeArea";
+	}
+
+	/**
+	 * 获取菜品信息
+	 * @return
+	 */
+	public String getCaipinByFandianId(){
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("start",caipinPage*10-10);
+		map.put("fandian_id",openDetail_fandianId);
+
+		caipinList =  customerListService.getCaipinByFandianId(map);
+		caipinCount = customerListService.getCaipinByFandianIdCount(map);
+		return "getCaipinByFandianId";
+	}
+
+	/**
+	 * 设置查询页面的fandianid
+	 * @return
+     */
+	public String setFandianId(){
+
+		return "setFandianId";
+	}
+
+	/**
+	 * 打开菜品详细页面
+	 * @return
+     */
+	public String detail(){
+
+		return "detail";
 	}
 
 	// 以下是set get方法---------------------------------------------
@@ -228,6 +271,46 @@ public class CustomerListAction extends BaseAction{
 
 	public List<Map<String, Object>> getCodeAreaList() {
 		return codeAreaList;
+	}
+
+	public void setCaipinList(List<Map<String, Object>> caipinList) {
+		this.caipinList = caipinList;
+	}
+
+	public List<Map<String, Object>> getCaipinList() {
+		return caipinList;
+	}
+
+	public void setOpenDetail_fandianId(String openDetail_fandianId) {
+		this.openDetail_fandianId = openDetail_fandianId;
+	}
+
+	public String getOpenDetail_fandianId() {
+		return openDetail_fandianId;
+	}
+
+	public void setOpenDetail_fandiantitle(String openDetail_fandiantitle) {
+		this.openDetail_fandiantitle = openDetail_fandiantitle;
+	}
+
+	public String getOpenDetail_fandiantitle() {
+		return openDetail_fandiantitle;
+	}
+
+	public void setCaipinCount(int caipinCount) {
+		this.caipinCount = caipinCount;
+	}
+
+	public int getCaipinCount() {
+		return caipinCount;
+	}
+
+	public void setCaipinPage(int caipinPage) {
+		this.caipinPage = caipinPage;
+	}
+
+	public int getCaipinPage() {
+		return caipinPage;
 	}
 }
 

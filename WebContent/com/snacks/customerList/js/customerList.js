@@ -285,15 +285,22 @@ customerList.js.query = function (){
     });
 };
 
-customerList.js.openDetail = function (obj) {
+customerList.js.openDetail = function (fandianId,fandianTitle) {
+    // 将要查询的饭店id传给后台
+    $.post(path+'/customerList/customerList_setFandianId.action',
+        {"openDetail_fandianId":fandianId,"openDetail_fandiantitle":fandianTitle},
+        function (data) {
+
+    });
+
     var index = layer.open({
         type: 2,
-        title: "添加",
+        title: "菜品详细信息",
         closeBtn: 1, //不显示关闭按钮
         area: ['340px','560px'],
         shift: 0,
         maxmin: true,//是否带有全屏按钮
-        content: [path+'/customerList/customerList_show.action','no'], //iframe的url，no代表不显示滚动条
+        content: [path+'/customerList/customerList_detail.action','no'], //iframe的url，no代表不显示滚动条
         success: function(){ //弹出成功打开
 
         },

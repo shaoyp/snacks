@@ -146,4 +146,12 @@
   <select id="getCodeArea" resultType="java.util.Map">
     SELECT * FROM code_area
   </select>
+
+  <!--根据饭店id获取菜品-->
+  <select id="getCaipinByFandianId" resultType="java.util.Map" parameterType="java.util.Map">
+    SELECT * FROM caipin WHERE fandianid = #{fandian_id} limit #{start},10
+  </select>
+  <select id="getCaipinByFandianIdCount" resultType="int" parameterType="java.util.Map">
+    SELECT count(*) FROM caipin WHERE fandianid = #{fandian_id}
+  </select>
 </mapper>

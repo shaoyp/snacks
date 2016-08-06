@@ -47,4 +47,17 @@ public class CustomerListServiceImpl implements CustomerListService {
     public List<Map<String, Object>> getCodeArea(){
         return customerListMapper.getCodeArea();
     }
+
+    /**
+     * 获取菜品信息
+     * @param param 饭店id
+     * @return
+     */
+    public List<Map<String, Object>> getCaipinByFandianId(Map<String, Object> param){
+        return customerListMapper.getCaipinByFandianId(param);
+    }
+
+    public int getCaipinByFandianIdCount(Map<String, Object> param){
+        return customerListMapper.getCaipinByFandianIdCount(param);
+    }
 }

@@ -24,4 +24,12 @@ public interface CustomerListService {
      * @return
      */
     List<Map<String, Object>> getCodeArea();
+
+    /**
+     * 获取菜品信息
+     * @param param 饭店id
+     * @return
+     */
+    List<Map<String, Object>> getCaipinByFandianId(Map<String, Object> param);
+    int getCaipinByFandianIdCount(Map<String, Object> param);
 }

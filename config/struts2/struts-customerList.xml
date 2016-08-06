@@ -8,6 +8,9 @@
 			<result name="getList" type="json"></result>
 			<result name="operFandianUser" type="json"></result>
 			<result name="getCodeArea" type="json"></result>
+			<result name="setFandianId" type="json"></result>
+			<result name="detail">/com/snacks/customerList/jsp/customerList_detail.jsp</result>
+			<result name="getCaipinByFandianId" type="json"></result>
 		</action>
 	</package>
 </struts>
